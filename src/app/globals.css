@@ -1,0 +1,14 @@
+/*
+  Tailwind v3 uses three directives which inject its generated styles at
+  build time via PostCSS:
+    - base:       normalises browser defaults (equivalent to a CSS reset)
+    - components: reserved for any @layer components {} blocks you define
+    - utilities:  the utility classes (flex, p-4, text-lg, etc.)
+
+  To customise the design system (colours, fonts, spacing, etc.), edit
+  tailwind.config.ts — the `theme.extend` key merges with the defaults
+  without replacing them, which is almost always what you want.
+*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

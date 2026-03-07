@@ -1,0 +1,23 @@
+# Next.js build output and cache
+.next/
+out/
+
+# Dependencies
+node_modules/
+
+# Environment files — never commit secrets to version control.
+# Copy .env.example → .env.local for local development.
+.env
+.env.local
+.env.*.local
+
+# OS / editor artifacts
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# TypeScript incremental compilation cache
+*.tsbuildinfo
+next-env.d.ts
