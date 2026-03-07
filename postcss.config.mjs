@@ -1,11 +1,10 @@
 // PostCSS is the CSS transformation pipeline that Next.js runs on every
-// stylesheet. Tailwind v3 requires two PostCSS plugins:
-//   - tailwindcss: generates utility classes from your templates
-//   - autoprefixer: adds vendor prefixes (e.g. -webkit-) for cross-browser support
+// stylesheet. Tailwind v4 ships its own PostCSS plugin (@tailwindcss/postcss)
+// which replaces the separate `tailwindcss` + `autoprefixer` plugins used in
+// Tailwind v3. Vendor prefixing is now handled internally by the plugin.
 const config = {
   plugins: {
-    tailwindcss: {},
-    autoprefixer: {},
+    '@tailwindcss/postcss': {},
   },
 };
 

@@ -11,7 +11,7 @@ Website for [promptrecovery.co.uk](https://promptrecovery.co.uk) — a small bus
 | [Next.js](https://nextjs.org/) | 15 | React framework, static export |
 | [React](https://react.dev/) | 19 | UI library |
 | [TypeScript](https://www.typescriptlang.org/) | 5 | Type safety |
-| [Tailwind CSS](https://tailwindcss.com/) | 3 | Utility-first styling |
+| [Tailwind CSS](https://tailwindcss.com/) | 4 | Utility-first styling |
 | Node.js `node:test` | built-in | Unit testing |
 | [tsx](https://tsx.is/) | 4 | TypeScript loader for tests |
 
@@ -19,14 +19,25 @@ Website for [promptrecovery.co.uk](https://promptrecovery.co.uk) — a small bus
 
 ## Prerequisites
 
-- **Node.js 22+** — the test runner uses `--import tsx` which requires Node 18+; 22 is recommended and matches CI.
-- **npm** — comes with Node.js. (`pnpm` or `yarn` can be substituted, but the lock file is `package-lock.json`.)
+- **Node.js 22+** — matches the CI environment. Node 18/20 may work but are untested locally.
+- **npm 10.5+** — Tailwind v4 uses a native Rust module (`@tailwindcss/oxide`) distributed via npm optional dependencies. Older npm releases (pre-10.5) have a bug where optional sub-packages are silently skipped, causing a "Cannot find native binding" error at runtime. See [Troubleshooting](#troubleshooting) if you hit this.
 
 Check your versions:
 
 ```bash
-node --version  # should be v22.x or higher
-npm --version
+node --version   # should be v22.x or higher
+npm --version    # should be 10.5 or higher
+```
+
+Upgrade if needed:
+
+```bash
+# Upgrade Node via your version manager (nvm, fnm, volta, etc.)
+# e.g. with nvm:
+nvm install 22 && nvm use 22
+
+# Upgrade npm independently of Node:
+npm install -g npm@latest
 ```
 
 ---
@@ -86,9 +97,9 @@ This expands to:
 node --import tsx --test 'src/**/*.test.ts'
 ```
 
-- `--import tsx` loads TypeScript support so `.ts` files run directly.
+- `--import tsx` loads TypeScript support so `.ts` files run directly without a separate compile step.
 - `--test` activates the native test runner.
-- The glob `src/**/*.test.ts` matches every test file under `src/`.
+- The glob `src/**/*.test.ts` is expanded by the shell (zsh/bash) before Node receives it.
 
 ### Run a single file
 
@@ -145,15 +156,16 @@ node --import tsx --test --test-reporter=spec 'src/**/*.test.ts'
 │   └── .nojekyll               # Prevents GitHub Pages from running Jekyll
 ├── src/
 │   ├── app/
-│   │   ├── globals.css         # Tailwind import + global CSS
+│   │   ├── globals.css         # Tailwind import + @theme customisation
 │   │   ├── layout.tsx          # Root HTML shell, site-wide metadata
 │   │   └── page.tsx            # Home page (/)
 │   └── __tests__/
 │       └── example.test.ts     # Example tests — replace with real ones
 ├── .gitignore
+├── .nvmrc                      # Pins the Node.js version for nvm users (run: nvm use)
 ├── next.config.ts              # Static export, image, and routing config
 ├── package.json
-├── postcss.config.mjs          # PostCSS pipeline (Tailwind v3 plugins)
+├── postcss.config.mjs          # PostCSS pipeline (@tailwindcss/postcss)
 ├── README.md
 └── tsconfig.json
 ```
@@ -207,22 +219,22 @@ You can also deploy without pushing code via the **Actions** tab → **Deploy to
 - `images.unoptimized: true` — Next.js image optimisation requires a server; this disables it for static export. Use standard `<img>` tags or keep `<Image />` with this flag.
 - `trailingSlash: true` — produces `about/index.html` instead of `about.html`, which is the convention expected by GitHub Pages.
 
-### `globals.css` / `tailwind.config.ts`
+### `globals.css` / Tailwind v4
 
-Tailwind v3 uses three `@tailwind` directives in `globals.css` (`base`, `components`, `utilities`). Customise the design system in `tailwind.config.ts` under `theme.extend` — this merges with the defaults rather than replacing them:
+Tailwind v4 uses a **CSS-first** configuration model — there is no `tailwind.config.ts`. A single `@import "tailwindcss"` replaces the three directives from v3. Customise the design system using a `@theme` block with CSS custom properties:
 
-```ts
-theme: {
-  extend: {
-    colors: { brand: '#1d4ed8' },
-    fontFamily: { sans: ['Inter', 'sans-serif'] },
-  },
-},
+```css
+@theme {
+  --color-brand: #1d4ed8;
+  --font-sans: 'Inter', sans-serif;
+}
 ```
+
+Tailwind auto-detects source files from your project; no `content` globs to configure.
 
 ### `public/.nojekyll`
 
-An empty file that prevents GitHub Pages from running the Jekyll static site generator on your `out/` directory. Without it, files and folders starting with `_` (which Next.js uses) would be ignored by GitHub Pages.
+An empty file that prevents GitHub Pages from running the Jekyll static site generator on your `out/` directory. Without it, files and folders starting with `_` (which Next.js uses internally) would be silently ignored by GitHub Pages.
 
 ---
 
@@ -233,3 +245,29 @@ npm run lint
 ```
 
 Uses Next.js's built-in ESLint configuration. Linting also runs as part of the build step.
+
+---
+
+## Troubleshooting
+
+### "Cannot find native binding" on `npm run dev`
+
+Tailwind v4 uses a native Rust module (`@tailwindcss/oxide`) that is distributed as a platform-specific optional npm package. Older versions of npm have a bug where these optional sub-packages are not installed, even though the parent package is present.
+
+**Fix:**
+
+```bash
+# 1. Upgrade npm to a version that handles optional dependencies correctly
+npm install -g npm@latest
+
+# 2. Clear the broken install and reinstall cleanly
+rm -rf node_modules package-lock.json
+npm install
+```
+
+If upgrading npm is not an option, an alternative workaround is to force optional dependency installation:
+
+```bash
+rm -rf node_modules package-lock.json
+npm install --include=optional
+```

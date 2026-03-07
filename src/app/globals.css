@@ -1,14 +1,17 @@
 /*
-  Tailwind v3 uses three directives which inject its generated styles at
-  build time via PostCSS:
-    - base:       normalises browser defaults (equivalent to a CSS reset)
-    - components: reserved for any @layer components {} blocks you define
-    - utilities:  the utility classes (flex, p-4, text-lg, etc.)
+  Tailwind v4 uses a CSS-first approach. A single `@import` replaces the
+  three directives used in v3 (`@tailwind base/components/utilities`).
+  Tailwind auto-detects your source files and generates only the classes
+  your project actually uses — no `content` globs to maintain.
 
-  To customise the design system (colours, fonts, spacing, etc.), edit
-  tailwind.config.ts — the `theme.extend` key merges with the defaults
-  without replacing them, which is almost always what you want.
+  To customise the design system (colours, fonts, spacing, etc.), use a
+  `@theme` block with CSS custom properties directly in this file, e.g.:
+
+    @theme {
+      --color-brand: #1a56db;
+      --font-sans: 'Inter', sans-serif;
+    }
+
+  There is no tailwind.config.ts in a v4 project.
 */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
