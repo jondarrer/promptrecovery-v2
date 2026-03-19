@@ -1,6 +1,6 @@
 # Prompt Recovery
 
-Website for [promptrecovery.co.uk](https://promptrecovery.co.uk) — a small business site built with Next.js, TypeScript, and Tailwind CSS, deployed as a static site to GitHub Pages.
+Website for [promptrecovery.co.uk](https://promptrecovery.co.uk) — a small business site for a Watford-based roadside recovery company. Built with Next.js, TypeScript, and Tailwind CSS, and deployed as a static site to GitHub Pages. UI interactions are powered by Flowbite; icons come from Lucide React; quote requests are submitted via Web3Forms.
 
 ---
 
@@ -12,6 +12,10 @@ Website for [promptrecovery.co.uk](https://promptrecovery.co.uk) — a small bus
 | [React](https://react.dev/) | 19 | UI library |
 | [TypeScript](https://www.typescriptlang.org/) | 5 | Type safety |
 | [Tailwind CSS](https://tailwindcss.com/) | 4 | Utility-first styling |
+| [Flowbite](https://flowbite.com/) | 4 | Interactive UI components (carousel, mobile menu) |
+| [Lucide React](https://lucide.dev/) | 0.577 | Icon library |
+| [Web3Forms](https://web3forms.com/) | — | Static-site-compatible contact form submissions |
+| [@next/third-parties](https://nextjs.org/docs/app/guides/third-party-libraries) | 15 | Google Analytics & GTM integration |
 | Node.js `node:test` | built-in | Unit testing |
 | [tsx](https://tsx.is/) | 4 | TypeScript loader for tests |
 
@@ -48,6 +52,52 @@ npm install -g npm@latest
 # Install dependencies
 npm install
 ```
+
+---
+
+## Configuration & Environment Variables
+
+Runtime configuration is centralised in `src/app/config.ts`, which reads from environment variables. Three variables are required:
+
+| Variable | Description | Where to get it |
+| --- | --- | --- |
+| `FORM_ACCESS_KEY` | Web3Forms access key — routes quote requests to your email | [web3forms.com](https://web3forms.com/) → your account |
+| `GOOGLE_TAG_MANAGER_ID` | GTM container ID (format: `GTM-XXXXXXX`) | [tagmanager.google.com](https://tagmanager.google.com/) |
+| `GOOGLE_ANALYTICS_ID` | GA4 measurement ID (format: `G-XXXXXXXXXX`) | [analytics.google.com](https://analytics.google.com/) |
+
+### Local development
+
+Copy the example file and fill in your values:
+
+```bash
+cp .env.example .env
+```
+
+Then edit `.env` with real values. The file is gitignored — never commit it.
+
+`config.ts` loads the file automatically via `dotenv` when the dev server or build runs locally.
+
+### CI / GitHub Actions (deployed site)
+
+The workflow reads these variables from **repository secrets**, which are injected as environment variables at build time.
+
+**One-time setup** (per variable):
+
+1. Go to your repository on GitHub.
+2. Navigate to **Settings → Secrets and variables → Actions**.
+3. Click **New repository secret**.
+4. Add each variable using the exact names in the table above.
+
+The `Build` step in `.github/workflows/deploy.yml` already maps them:
+
+```yaml
+env:
+  FORM_ACCESS_KEY: ${{ secrets.FORM_ACCESS_KEY }}
+  GOOGLE_TAG_MANAGER_ID: ${{ secrets.GOOGLE_TAG_MANAGER_ID }}
+  GOOGLE_ANALYTICS_ID: ${{ secrets.GOOGLE_ANALYTICS_ID }}
+```
+
+If a secret is missing or empty, the build will still succeed but the corresponding feature (form submissions, analytics) will be silently disabled.
 
 ---
 
@@ -150,25 +200,187 @@ node --import tsx --test --test-reporter=spec 'src/**/*.test.ts'
 .
 ├── .github/
 │   └── workflows/
-│       └── deploy.yml          # CI/CD: build, test, deploy to GitHub Pages
+│       └── deploy.yml              # CI/CD: build, test, deploy to GitHub Pages
 ├── public/
-│   ├── CNAME                   # Custom domain for GitHub Pages
-│   └── .nojekyll               # Prevents GitHub Pages from running Jekyll
+│   ├── CNAME                       # Custom domain for GitHub Pages
+│   ├── .nojekyll                   # Prevents GitHub Pages from running Jekyll
+│   └── images/                     # Static images served at /images/
 ├── src/
 │   ├── app/
-│   │   ├── globals.css         # Tailwind import + @theme customisation
-│   │   ├── layout.tsx          # Root HTML shell, site-wide metadata
-│   │   └── page.tsx            # Home page (/)
-│   └── __tests__/
-│       └── example.test.ts     # Example tests — replace with real ones
+│   │   ├── about/
+│   │   │   └── page.tsx            # /about page
+│   │   ├── data/
+│   │   │   ├── index.ts            # Barrel re-export for all data files
+│   │   │   ├── faqs.json           # FAQ questions and answers
+│   │   │   ├── google-reviews.json # Google review data
+│   │   │   ├── pictures.json       # Gallery image paths
+│   │   │   ├── reasons-to-choose-nick.json
+│   │   │   ├── seo.json            # Business info, SEO metadata, structured data
+│   │   │   ├── services.json       # Service names, descriptions, icons
+│   │   │   └── values.json         # Company values
+│   │   ├── faqs/
+│   │   │   └── page.tsx            # /faqs page (includes FAQPage JSON-LD)
+│   │   ├── services/
+│   │   │   └── page.tsx            # /services page
+│   │   ├── globals.css             # Tailwind import + @theme customisation
+│   │   ├── layout.tsx              # Root HTML shell, site-wide metadata, JSON-LD
+│   │   └── page.tsx                # Home page (/)
+│   ├── components/
+│   │   ├── carousel.tsx            # Flowbite-powered review carousel
+│   │   ├── contact-form.tsx        # Quote request form (Web3Forms submission)
+│   │   ├── faq-item.tsx            # Individual FAQ row
+│   │   ├── footer.tsx              # Site footer
+│   │   ├── form-field.tsx          # Reusable floating-label text input
+│   │   ├── google-map.tsx          # Embedded Google Map iframe
+│   │   ├── google-user-profile.tsx # Review author avatar + name
+│   │   ├── grid-gallery.tsx        # Photo grid
+│   │   ├── icons.ts                # Lucide React barrel re-export (see Icons section)
+│   │   ├── navbar.tsx              # Fixed top nav, Flowbite mobile menu
+│   │   ├── rating.tsx              # Star rating display
+│   │   ├── review-card-v2.tsx      # Individual Google review card
+│   │   ├── section-heading.tsx     # Styled section title
+│   │   ├── section.tsx             # Page section wrapper
+│   │   ├── service-item.tsx        # Service/value card
+│   │   ├── toast.tsx               # Success/error notification
+│   │   └── yes-no-radio-group.tsx  # Yes/No radio pair for contact form
+│   └── types.ts                    # Shared TypeScript types
 ├── .gitignore
-├── .nvmrc                      # Pins the Node.js version for nvm users (run: nvm use)
-├── next.config.ts              # Static export, image, and routing config
+├── .nvmrc                          # Pins the Node.js version for nvm users (run: nvm use)
+├── next.config.ts                  # Static export, image, and routing config
 ├── package.json
-├── postcss.config.mjs          # PostCSS pipeline (@tailwindcss/postcss)
+├── postcss.config.mjs              # PostCSS pipeline (@tailwindcss/postcss)
 ├── README.md
 └── tsconfig.json
 ```
+
+---
+
+## UI Components — Flowbite
+
+[Flowbite](https://flowbite.com/) provides interactive component behaviours (carousels, collapsible menus, toasts) via `data-*` attributes wired up by a small JavaScript library. It is installed via npm and used **without** a CDN `<script>` tag.
+
+### Initialisation
+
+Flowbite must be initialised after the DOM is ready. Because the site uses client-side navigation (Next.js App Router), the library must also re-initialise after every route change to re-wire components on new pages. This is handled in `navbar.tsx`, which is already a client component:
+
+```tsx
+useEffect(() => {
+  import('flowbite').then(({ initFlowbite }) => initFlowbite());
+}, [pathname]); // re-run on every navigation
+```
+
+The dynamic `import()` keeps Flowbite out of the server bundle and defers loading until it is actually needed in the browser.
+
+### Components in use
+
+| Component | File | Key attributes |
+| --- | --- | --- |
+| Carousel | `src/components/carousel.tsx` | `data-carousel="static"`, `data-carousel-item`, `data-carousel-prev`, `data-carousel-next`, `data-carousel-slide-to` |
+| Mobile navbar | `src/components/navbar.tsx` | `data-collapse-toggle`, `aria-controls`, `aria-expanded` |
+
+### What Flowbite is NOT used for
+
+The `Toast` component uses React state (an `onClose` callback) rather than Flowbite's `data-dismiss-target` attribute. This is intentional — Flowbite's dismiss requires the element to already be in the DOM when the library initialises, which is not guaranteed for dynamically rendered toasts.
+
+### Adding new Flowbite components
+
+1. Find the component in the [Flowbite docs](https://flowbite.com/docs/).
+2. Copy the HTML and translate to JSX (camelCase attributes, `className` instead of `class`).
+3. Flowbite's JS picks up the `data-*` attributes automatically after the next `initFlowbite()` call — no extra wiring needed.
+
+---
+
+## Icons — Lucide React
+
+[Lucide React](https://lucide.dev/) provides 1,500+ consistent, open source icons as React components. Each icon is a lightweight SVG that accepts standard props (`className`, `size`, `strokeWidth`, `aria-hidden`, etc.).
+
+### Barrel re-export — `src/components/icons.ts`
+
+All icons used in the project are re-exported from a single barrel file rather than imported directly from `lucide-react` throughout the codebase. This keeps imports consistent and makes it easy to see which icons are in use at a glance.
+
+```ts
+// src/components/icons.ts
+export { Check, ChevronLeft, ChevronRight, Menu, X, ... } from 'lucide-react';
+```
+
+**Always import icons from `@/components/icons`, not from `lucide-react` directly:**
+
+```tsx
+// ✅ correct
+import { Check, X } from '@/components/icons';
+
+// ❌ avoid — bypasses the barrel
+import { Check } from 'lucide-react';
+```
+
+### Adding a new icon
+
+1. Find the icon name on [lucide.dev](https://lucide.dev/).
+2. Add the named export to `src/components/icons.ts`.
+3. Import and use it in your component.
+
+```ts
+// 1. Add to icons.ts
+export { ..., MapPin } from 'lucide-react';
+```
+
+```tsx
+// 2. Use in a component
+import { MapPin } from '@/components/icons';
+
+<MapPin className="w-5 h-5" aria-hidden="true" />
+```
+
+### Usage conventions
+
+| Concern | Convention |
+| --- | --- |
+| Size | Prefer Tailwind classes (`className="w-5 h-5"`) for consistency; use the `size` prop only when a numeric value is clearer (e.g. `size={14}` for inline text icons) |
+| Decorative icons | Add `aria-hidden="true"` so screen readers skip them |
+| Meaningful icons | Omit `aria-hidden` and add an `aria-label` or adjacent `<span className="sr-only">` |
+| Stroke width | Leave at the default (`2`) unless the design requires otherwise |
+
+### Custom SVGs (non-Lucide)
+
+Two icons in the codebase are intentionally **not** from Lucide:
+
+| Icon | Location | Reason |
+| --- | --- | --- |
+| WhatsApp logo | `src/components/navbar.tsx` | Brand icon with a specific green gradient; no Lucide equivalent |
+| Decorative quote mark | `src/components/review-card-v2.tsx` | Custom shape with a non-standard viewBox, part of the card's visual design |
+
+---
+
+## Content & SEO Data
+
+All editable content lives in JSON files under `src/app/data/`. These are imported and re-exported via `src/app/data/index.ts`.
+
+### `seo.json`
+
+The single source of truth for business information used across metadata and structured data:
+
+- **Next.js `metadata` export** in `layout.tsx` — populates `<title>`, `<meta name="description">`, Open Graph, and Twitter Card tags.
+- **`LocalBusiness` + `AggregateRating` JSON-LD** in `layout.tsx` — injected on every page for Google's rich results.
+- **`FAQPage` JSON-LD** in `faqs/page.tsx` — built from `faqs.json` at build time.
+
+To update business details (address, phone, hours, social links), edit `seo.json` — no code changes are needed.
+
+---
+
+## Contact Form — Web3Forms
+
+The quote request form (`src/components/contact-form.tsx`) submits to [Web3Forms](https://web3forms.com/), a third-party service that forwards submissions to an email address. This works without a backend server, making it compatible with a static export.
+
+The access key is set in `src/app/page.tsx`:
+
+```tsx
+const action = 'https://api.web3forms.com/submit';
+const accessKey = 'your-access-key-here';
+```
+
+On submit, the form POSTs a JSON body containing `access_key` and all form field values. A `Toast` notification confirms success or failure. On success, the form resets.
+
+> The access key is a public identifier (not a secret) — it is safe to commit and visible in the browser.
 
 ---
 

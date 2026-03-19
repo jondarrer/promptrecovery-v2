@@ -54,7 +54,19 @@ jobs:
 
       - name: Build
         # Produces the static export in the `out/` directory.
+        # Secrets are injected here so config.ts can read them via process.env.
+        # Add each variable to Settings → Secrets and variables → Actions first.
         run: npm run build
+        env:
+          FORM_ACCESS_KEY: ${{ secrets.FORM_ACCESS_KEY }}
+          GOOGLE_TAG_MANAGER_ID: ${{ secrets.GOOGLE_TAG_MANAGER_ID }}
+          GOOGLE_ANALYTICS_ID: ${{ secrets.GOOGLE_ANALYTICS_ID }}
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Run UI tests
+        run: npm run test:ui
 
       - name: Configure GitHub Pages
         # Reads the repository's Pages settings and sets ACTION_ID / BASE_URL

@@ -14,4 +14,34 @@
 
   There is no tailwind.config.ts in a v4 project.
 */
-@import "tailwindcss";
+@import 'tailwindcss';
+
+/* flowbite - see https://flowbite.com/docs/getting-started/typescript/#install-flowbite */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import 'flowbite/src/themes/default';
+
+@plugin "flowbite/plugin";
+
+@source "../node_modules/flowbite";
+
+/* Apply a consistent yellow focus ring to all footer links. */
+footer a:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-yellow);
+  border-radius: var(--radius-sm, 2px);
+}
+
+@theme {
+  --color-brand: #a21212;
+  --color-brand-light: #c43737;
+  --color-yellow-dark: #deaa00;
+  --color-yellow: #ffc400;
+  --color-heading: #0a192f;
+  --color-navy: #0a192f;
+  --color-fg-brand: #a21212;
+  --color-light-grey: #f5f7fa;
+
+  --breakpoint-xs: 32rem;
+
+  --font-sans: 'Inter', sans-serif;
+}

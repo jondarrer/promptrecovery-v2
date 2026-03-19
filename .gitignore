@@ -21,3 +21,7 @@ Thumbs.db
 # TypeScript incremental compilation cache
 *.tsbuildinfo
 next-env.d.ts
+
+# Playwright
+playwright-report/
+test-results/
