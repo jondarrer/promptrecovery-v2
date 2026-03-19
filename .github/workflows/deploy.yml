@@ -32,6 +32,8 @@ jobs:
   build:
     name: Build static site
     runs-on: ubuntu-latest
+    # Needed to access environment secrets stored under the github-pages environment.
+    environment: github-pages
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -55,7 +57,7 @@ jobs:
       - name: Build
         # Produces the static export in the `out/` directory.
         # Secrets are injected here so config.ts can read them via process.env.
-        # Add each variable to Settings → Secrets and variables → Actions first.
+        # These are environment secrets stored under Environments → github-pages.
         run: npm run build
         env:
           NEXT_PUBLIC_BASE_PATH: /promptrecovery-v2

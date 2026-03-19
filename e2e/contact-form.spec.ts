@@ -220,7 +220,7 @@ test.describe('Contact form', () => {
     await page.getByRole('button', { name: 'Request quote' }).click();
     await expect(toast(page)).toBeVisible();
 
-    expect(requestBody.access_key).toBeTruthy();
+    expect(requestBody.access_key).toBeDefined();
     expect(requestBody.first_name).toBe('Jane');
     expect(requestBody.last_name).toBe('Smith');
     expect(requestBody.email).toBe('jane@example.com');

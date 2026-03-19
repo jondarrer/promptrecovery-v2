@@ -79,13 +79,13 @@ Then edit `.env` with real values. The file is gitignored — never commit it.
 
 ### CI / GitHub Actions (deployed site)
 
-The workflow reads these variables from **repository secrets**, which are injected as environment variables at build time.
+The workflow reads these variables from **environment secrets** scoped to the `github-pages` environment, and injects them at build time.
 
 **One-time setup** (per variable):
 
 1. Go to your repository on GitHub.
-2. Navigate to **Settings → Secrets and variables → Actions**.
-3. Click **New repository secret**.
+2. Navigate to **Settings → Environments → github-pages → Environment secrets**.
+3. Click **Add environment secret**.
 4. Add each variable using the exact names in the table above.
 
 The `Build` step in `.github/workflows/deploy.yml` already maps them:
