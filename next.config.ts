@@ -19,11 +19,10 @@ const nextConfig: NextConfig = {
   // rather than `about.html`, so this prevents 404s on direct navigation.
   trailingSlash: true,
 
-  // No `basePath` is needed here because the site is deployed at the root of
-  // the custom domain (promptrecovery.co.uk). If you ever move to a GitHub
-  // Pages project page (e.g. username.github.io/repo-name), set:
-  // TODO: comment this out prior to going live
-  basePath: '/promptrecovery-v2',
+  // Set NEXT_PUBLIC_BASE_PATH=/promptrecovery-v2 when building for GitHub Pages
+  // (project page URL: username.github.io/repo-name). Leave it unset for the
+  // custom domain (promptrecovery.co.uk) and for local dev / Playwright tests.
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH ?? '',
 };
 
 export default nextConfig;

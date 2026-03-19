@@ -1,13 +1,17 @@
 import { defineConfig, devices } from '@playwright/test';
 
 /**
- * In CI (`process.env.CI === 'true'`):
- *   - Serves the pre-built static output from `out/` using `serve`.
- *   - Assumes `npm run build` has already run before `npm run test:ui`.
+ * Always uses `next dev` as the test server — locally and in CI.
  *
- * Locally:
- *   - Reuses an already-running dev server if one is on port 3000.
- *   - Otherwise starts `next dev` automatically.
+ * Why not `npx serve out` in CI?
+ *   Next.js static exports with `basePath` set embed asset paths like
+ *   `/promptrecovery-v2/_next/...` in the HTML, but `serve out` maps requests
+ *   to the `out/` root where `_next/` lives at `/_next/`, not
+ *   `/promptrecovery-v2/_next/`. The JS never loads, React never hydrates, and
+ *   any test that submits the form fails. `next dev` handles `basePath` routing
+ *   correctly and avoids this entirely.
+ *
+ * Reuses an already-running dev server locally to avoid a slow cold start.
  */
 export default defineConfig({
   testDir: './e2e',
@@ -31,9 +35,8 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: process.env.CI ? 'npx serve out -l 3000' : 'npm run dev',
+    command: 'npm run dev',
     port: 3000,
-    // Reuse an existing dev server locally to avoid a slow cold start.
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: true,
   },
 });

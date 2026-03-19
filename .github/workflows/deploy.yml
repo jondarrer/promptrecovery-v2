@@ -58,6 +58,7 @@ jobs:
         # Add each variable to Settings → Secrets and variables → Actions first.
         run: npm run build
         env:
+          NEXT_PUBLIC_BASE_PATH: /promptrecovery-v2
           FORM_ACCESS_KEY: ${{ secrets.FORM_ACCESS_KEY }}
           GOOGLE_TAG_MANAGER_ID: ${{ secrets.GOOGLE_TAG_MANAGER_ID }}
           GOOGLE_ANALYTICS_ID: ${{ secrets.GOOGLE_ANALYTICS_ID }}
