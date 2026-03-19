@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 
 import { pictures, values, seo } from '../data/index';
 import { GridGallery } from '@/components/grid-gallery';
@@ -40,7 +41,13 @@ export default function AboutPage() {
                 am.
               </p>
             </div>
-            <img src="/images/image2-1185x593.jpg" className="rounded-base" />
+            <Image
+              src="/images/image2-1185x593.jpg"
+              width={1185}
+              height={593}
+              className="rounded-base"
+              alt="Nick, founder of Prompt Recovery"
+            />
           </div>
         </div>
 

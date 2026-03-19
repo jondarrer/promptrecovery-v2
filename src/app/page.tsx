@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 
 import { Carousel } from '@/components/carousel';
 import { ReviewCardV2 } from '@/components/review-card-v2';
@@ -81,7 +82,13 @@ export default function HomePage() {
                 </Link>
               </p>
             </div>
-            <img src="/images/image2-1185x593.jpg" className="rounded-base" />
+            <Image
+              src="/images/image2-1185x593.jpg"
+              width={1185}
+              height={593}
+              className="rounded-base"
+              alt="Nick, founder of Prompt Recovery"
+            />
           </div>
         </div>
       </Section>

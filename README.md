@@ -428,7 +428,7 @@ You can also deploy without pushing code via the **Actions** tab → **Deploy to
 ### `next.config.ts`
 
 - `output: 'export'` — static export mode; no Node.js server at runtime.
-- `images.unoptimized: true` — Next.js image optimisation requires a server; this disables it for static export. Use standard `<img>` tags or keep `<Image />` with this flag.
+- `images.unoptimized: true` — Next.js image optimisation requires a server; this disables it for static export. Use Next.js `<Image />` tags with this flag (supports the basePath setting, useful when running in a folder).
 - `trailingSlash: true` — produces `about/index.html` instead of `about.html`, which is the convention expected by GitHub Pages.
 
 ### `globals.css` / Tailwind v4

@@ -87,4 +87,6 @@ export type ItemWithIcon = {
 export type Picture = {
   filePath: string;
   description: string;
+  width: number;
+  height: number;
 };

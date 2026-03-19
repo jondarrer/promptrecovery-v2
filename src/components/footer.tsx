@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 import { Mail, Phone } from './icons';
 
@@ -23,7 +24,13 @@ export default function Footer({
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
             <Link href="/" className="flex items-center">
-              <img src="/images/logo-128x128.png" className="h-32 me-3" alt="Prompt Recovery Logo" />
+              <Image
+                src="/images/logo-128x128.png"
+                width={128}
+                height={128}
+                className="h-32 me-3"
+                alt="Prompt Recovery Logo"
+              />
               <span className="text-white self-center text-2xl font-semibold whitespace-nowrap">Prompt Recovery</span>
             </Link>
           </div>

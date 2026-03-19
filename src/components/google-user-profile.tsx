@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 import { GoogleUser } from '@/types';
 
@@ -9,7 +10,13 @@ export function GoogleUserProfile({ userProfile, children }: { userProfile: Goog
       href={userProfile.authorUrl}
       className="flex items-center gap-2.5 focus-visible:ring-2 focus-visible:ring-yellow"
     >
-      <img className="w-12 h-12 rounded-full bg-neutral-300" src={userProfile.authorPhoto} alt={userProfile.author} />
+      <Image
+        className="w-12 h-12 rounded-full bg-neutral-300"
+        width={48}
+        height={48}
+        src={userProfile.authorPhoto}
+        alt={userProfile.author}
+      />
       <div className="font-medium text-heading">
         <div className="text-left">{userProfile.author}</div>
         {children}

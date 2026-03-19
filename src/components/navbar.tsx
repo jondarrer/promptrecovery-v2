@@ -6,9 +6,10 @@
 // 2. The Flowbite mobile-menu toggle (data-collapse-toggle) needs JS to run,
 //    so this component needs to be in the browser bundle anyway.
 
+import { useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 
 import { Menu } from './icons';
 
@@ -95,7 +96,7 @@ export default function Navbar({ children, phoneNumber }: { children?: React.Rea
           href="/"
           className="flex items-center space-x-3 rtl:space-x-reverse rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow"
         >
-          <img src="/images/logo-128x128.png" className="h-18" alt="Prompt Recovery Logo" />
+          <Image src="/images/logo-128x128.png" width={128} height={128} className="h-18" alt="Prompt Recovery Logo" />
           <span className="self-center text-xl text-white font-semibold whitespace-nowrap pr-2">Prompt Recovery</span>
         </Link>
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
