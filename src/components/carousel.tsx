@@ -1,11 +1,39 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect, useRef } from 'react';
 
 import { ChevronLeft, ChevronRight } from './icons';
 
-export function Carousel({ children }: { children: React.ReactNode }) {
+export function Carousel({ children, interval = 10_000 }: { children: React.ReactNode; interval?: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    // Dynamically import Flowbite so it is never bundled server-side.
+    // We initialise the carousel ourselves (instead of relying on initFlowbite)
+    // so we can pass a custom interval between slides.
+    import('flowbite').then(({ Carousel }) => {
+      const itemEls = Array.from(el.querySelectorAll('[data-carousel-item]')) as HTMLElement[];
+      const items = itemEls.map((itemEl, position) => ({ position, el: itemEl }));
+
+      const carousel = new Carousel(el, items, { interval });
+      carousel.cycle();
+
+      // Wire up prev / next / slide-to controls manually (initFlowbite would
+      // normally do this when it detects data-carousel="slide" on the element).
+      el.querySelector('[data-carousel-prev]')?.addEventListener('click', () => carousel.prev());
+      el.querySelector('[data-carousel-next]')?.addEventListener('click', () => carousel.next());
+      el.querySelectorAll('[data-carousel-slide-to]').forEach((btn, i) => {
+        btn.addEventListener('click', () => carousel.slideTo(i));
+      });
+    });
+  }, [interval]);
+
   return (
-    <div id="default-carousel" className="relative w-full" data-carousel="static">
-      {/*-- Carousel wrapper --*/}
+    <div ref={ref} className="relative w-full">
+      {/* Carousel wrapper */}
       <div className="relative h-72 overflow-hidden rounded-base md:h-96">
         {React.Children.map(children, (child, i) => (
           // data-carousel-item="active" tells Flowbite which slide to show
@@ -16,7 +44,8 @@ export function Carousel({ children }: { children: React.ReactNode }) {
           </div>
         ))}
       </div>
-      {/*-- Slider indicators --*/}
+
+      {/* Slide indicators */}
       <div className="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
         {React.Children.map(children, (_child, i) => (
           <button
@@ -26,10 +55,11 @@ export function Carousel({ children }: { children: React.ReactNode }) {
             aria-current={i === 0 ? 'true' : 'false'}
             aria-label={`Slide ${i + 1}`}
             data-carousel-slide-to={i}
-          ></button>
+          />
         ))}
       </div>
-      {/*-- Slider controls --*/}
+
+      {/* Prev control */}
       <button
         type="button"
         className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
@@ -40,6 +70,8 @@ export function Carousel({ children }: { children: React.ReactNode }) {
           <span className="sr-only">Previous</span>
         </span>
       </button>
+
+      {/* Next control */}
       <button
         type="button"
         className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
