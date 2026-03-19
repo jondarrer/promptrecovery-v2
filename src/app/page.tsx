@@ -66,7 +66,7 @@ export default function HomePage() {
       {/*-- End Hero --*/}
       {/* About Section */}
       <Section classNames="bg-light-yellow">
-        <div className="max-w-7xl pt-36 px-4 py-10 sm:px-6 lg:px-8 lg:py-14 lg:pt-18 mx-auto">
+        <div className="max-w-7xl pt-18 px-4 py-10 sm:px-6 lg:px-8 lg:py-14 lg:pt-18 mx-auto">
           <div className="grid items-center md:grid-cols-2 gap-8 lg:gap-12">
             <div>
               <SectionHeading sectionName="About" />
@@ -96,7 +96,7 @@ export default function HomePage() {
       {/* End About Section */}
       {/* Contact Form Section */}
       <Section>
-        <div className="max-w-7xl pt-36 px-4 py-10 sm:px-6 lg:px-8 lg:py-14 lg:pt-18 mx-auto">
+        <div className="max-w-7xl pt-18 px-4 py-10 sm:px-6 lg:px-8 lg:py-14 lg:pt-18 mx-auto">
           <SectionHeading sectionName="Request a quote" />
           <ContactForm action={config.form.action} accessKey={config.form.accessKey} />
         </div>
@@ -104,7 +104,7 @@ export default function HomePage() {
       {/* End Contact Form Section */}
       {/* Services Section */}
       <Section classNames="bg-light-grey">
-        <div className="max-w-7xl pt-36 px-4 py-10 sm:px-6 lg:px-8 lg:py-14 lg:pt-18 mx-auto">
+        <div className="max-w-7xl pt-18 px-4 py-10 sm:px-6 lg:px-8 lg:py-14 lg:pt-18 mx-auto">
           <SectionHeading sectionName="Services" />
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 items-center gap-6">
             {services.map((service) => (
@@ -116,7 +116,7 @@ export default function HomePage() {
       {/* End Services Section */}
       {/* Why Choose Us Section */}
       <Section classNames="bg-light-grey">
-        <div className="max-w-7xl pt-36 px-4 py-10 sm:px-6 lg:px-8 lg:py-14 lg:pt-18 mx-auto">
+        <div className="max-w-7xl pt-18 px-4 py-10 sm:px-6 lg:px-8 lg:py-14 lg:pt-18 mx-auto">
           <SectionHeading sectionName="Why choose us" />
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 items-center gap-6">
             {reasonsToChooseNick.map((reason) => (
@@ -128,7 +128,7 @@ export default function HomePage() {
       {/* End Why Choose Us Section */}
       {/* Find Us Section */}
       <Section>
-        <div className="max-w-7xl pt-36 px-4 py-10 sm:px-6 lg:px-8 lg:py-14 lg:pt-18 mx-auto">
+        <div className="max-w-7xl pt-18 px-4 py-10 sm:px-6 lg:px-8 lg:py-14 lg:pt-18 mx-auto">
           <SectionHeading sectionName="Find us" />
           <h3 className="text-xl text-center font-thin mb-8">We operate throughout Watford and surrounding areas.</h3>
           <GoogleMap />
