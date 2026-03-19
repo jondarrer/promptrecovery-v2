@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 
 import { pictures, values, seo } from '../data/index';
+import { basePath } from '../base-path';
 import { GridGallery } from '@/components/grid-gallery';
 import { PageHeader } from '@/components/page-header';
 import { SectionHeading } from '@/components/section-heading';
@@ -42,7 +43,7 @@ export default function AboutPage() {
               </p>
             </div>
             <Image
-              src="/images/image2-1185x593.jpg"
+              src={`${basePath}/images/image2-1185x593.jpg`}
               width={1185}
               height={593}
               className="rounded-base"

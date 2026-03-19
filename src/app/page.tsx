@@ -12,6 +12,7 @@ import { ServiceItem } from '@/components/service-item';
 
 import { googleReviews, services, reasonsToChooseNick, seo } from './data/index';
 
+import { basePath } from './base-path';
 import config from './config';
 
 // Page-level metadata overrides the defaults set in layout.tsx.
@@ -76,14 +77,14 @@ export default function HomePage() {
               <p className="mt-8">
                 <Link
                   href="/about"
-                  className="hidden xs:inline text-navy font-normal underline-navy leading-5 rounded-base text-xl underline underline-offset-4"
+                  className="hidden xs:inline text-navy font-normal leading-5 text-xl hover:underline underline-navy underline-offset-4"
                 >
                   Learn more about us
                 </Link>
               </p>
             </div>
             <Image
-              src="/images/image2-1185x593.jpg"
+              src={`${basePath}/images/image2-1185x593.jpg`}
               width={1185}
               height={593}
               className="rounded-base"

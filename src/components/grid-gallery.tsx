@@ -1,5 +1,6 @@
 import Image from 'next/image';
 
+import { basePath } from '@/app/base-path';
 import { Picture } from '@/types';
 
 export function GridGallery({ items }: { items: Picture[] }) {
@@ -11,7 +12,7 @@ export function GridGallery({ items }: { items: Picture[] }) {
             className="h-auto max-w-full rounded-base"
             width={item.width}
             height={item.height}
-            src={item.filePath}
+            src={`${basePath}${item.filePath}`}
             alt={item.description}
           />
         </div>

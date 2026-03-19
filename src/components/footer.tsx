@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
+import { basePath } from '@/app/base-path';
 import { Mail, Phone } from './icons';
 
 export default function Footer({
@@ -25,7 +26,7 @@ export default function Footer({
           <div className="mb-6 md:mb-0">
             <Link href="/" className="flex items-center">
               <Image
-                src="/images/logo-128x128.png"
+                src={`${basePath}/images/logo-128x128.png`}
                 width={128}
                 height={128}
                 className="h-32 me-3"
