@@ -22,7 +22,8 @@ const nextConfig: NextConfig = {
   // No `basePath` is needed here because the site is deployed at the root of
   // the custom domain (promptrecovery.co.uk). If you ever move to a GitHub
   // Pages project page (e.g. username.github.io/repo-name), set:
-  //   basePath: '/repo-name'
+  // TODO: comment this out prior to going live
+  basePath: '/promptrecovery-v2',
 };
 
 export default nextConfig;
