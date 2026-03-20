@@ -17,9 +17,9 @@ on:
 
 # Grant the workflow the minimum permissions it needs.
 permissions:
-  contents: read   # checkout the repo
-  pages: write     # upload the Pages artifact
-  id-token: write  # required by the OIDC-based deploy-pages action
+  contents: read # checkout the repo
+  pages: write # upload the Pages artifact
+  id-token: write # required by the OIDC-based deploy-pages action
 
 # Only allow one deployment at a time. If a new push arrives while a
 # deployment is in progress, the in-progress run is NOT cancelled (to avoid
@@ -53,6 +53,13 @@ jobs:
       - name: Run tests
         # Tests run before the build so a test failure blocks deployment.
         run: npm test
+
+      - name: Fetch latest Google Reviews
+        # Fetch the latest reviews to be stored in /src/app/data/google-reviews.json.
+        env:
+          GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
+          GOOGLE_PLACE_ID: ${{ secrets.GOOGLE_PLACE_ID }}
+        run: npm run fetch-reviews
 
       - name: Build
         # Produces the static export in the `out/` directory.

@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "test": "node --import tsx --test 'src/**/*.test.ts'",
-    "test:ui": "playwright test"
+    "test:ui": "playwright test",
+    "fetch-reviews": "node scripts/fetch-google-reviews.mjs"
   },
   "dependencies": {
     "@next/third-parties": "^15.3.2",
