@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
+import { Inter } from 'next/font/google';
 import { GoogleAnalytics } from '@next/third-parties/google';
 
 import Navbar from '@/components/navbar';
@@ -78,12 +79,16 @@ const localBusinessSchema = {
   },
 };
 
+const inter = Inter({
+  subsets: ['latin'],
+});
+
 // RootLayout wraps every page in the application. It must render an <html>
 // and <body> element. Fonts, global providers, and persistent UI elements
 // (nav, footer) should live here once they are built.
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={inter.className}>
       <body>
         {/* GTM noscript must be the first element inside <body> per GTM docs */}
         <noscript>
