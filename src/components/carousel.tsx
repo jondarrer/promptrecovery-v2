@@ -34,7 +34,7 @@ export function Carousel({ children, interval = 10_000 }: { children: React.Reac
   return (
     <div ref={ref} className="relative w-full">
       {/* Carousel wrapper */}
-      <div className="relative h-72 overflow-hidden rounded-base md:h-96">
+      <div className="rounded-base relative h-72 overflow-hidden md:h-96">
         {React.Children.map(children, (child, i) => (
           // data-carousel-item="active" tells Flowbite which slide to show
           // first. All other items start hidden; Flowbite's JS then toggles
@@ -46,12 +46,12 @@ export function Carousel({ children, interval = 10_000 }: { children: React.Reac
       </div>
 
       {/* Slide indicators */}
-      <div className="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
+      <div className="absolute bottom-5 left-1/2 z-30 flex -translate-x-1/2 space-x-3 rtl:space-x-reverse">
         {React.Children.map(children, (_child, i) => (
           <button
             key={i}
             type="button"
-            className="w-3 h-3 rounded-base focus:ring-2 focus:ring-yellow"
+            className="rounded-base focus:ring-yellow h-3 w-3 focus:ring-2"
             aria-current={i === 0 ? 'true' : 'false'}
             aria-label={`Slide ${i + 1}`}
             data-carousel-slide-to={i}
@@ -62,11 +62,11 @@ export function Carousel({ children, interval = 10_000 }: { children: React.Reac
       {/* Prev control */}
       <button
         type="button"
-        className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+        className="group absolute start-0 top-0 z-30 flex h-full cursor-pointer items-center justify-center px-4 focus:outline-none"
         data-carousel-prev
       >
-        <span className="inline-flex items-center justify-center w-10 h-10 rounded-base bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-2 group-focus:ring-yellow group-focus:outline-none">
-          <ChevronLeft className="w-5 h-5 text-white rtl:rotate-180" aria-hidden="true" />
+        <span className="rounded-base group-focus:ring-yellow inline-flex h-10 w-10 items-center justify-center bg-white/30 group-hover:bg-white/50 group-focus:ring-2 group-focus:outline-none dark:bg-gray-800/30 dark:group-hover:bg-gray-800/60">
+          <ChevronLeft className="h-5 w-5 text-white rtl:rotate-180" aria-hidden="true" />
           <span className="sr-only">Previous</span>
         </span>
       </button>
@@ -74,11 +74,11 @@ export function Carousel({ children, interval = 10_000 }: { children: React.Reac
       {/* Next control */}
       <button
         type="button"
-        className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+        className="group absolute end-0 top-0 z-30 flex h-full cursor-pointer items-center justify-center px-4 focus:outline-none"
         data-carousel-next
       >
-        <span className="inline-flex items-center justify-center w-10 h-10 rounded-base bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-2 group-focus:ring-yellow group-focus:outline-none">
-          <ChevronRight className="w-5 h-5 text-white rtl:rotate-180" aria-hidden="true" />
+        <span className="rounded-base group-focus:ring-yellow inline-flex h-10 w-10 items-center justify-center bg-white/30 group-hover:bg-white/50 group-focus:ring-2 group-focus:outline-none dark:bg-gray-800/30 dark:group-hover:bg-gray-800/60">
+          <ChevronRight className="h-5 w-5 text-white rtl:rotate-180" aria-hidden="true" />
           <span className="sr-only">Next</span>
         </span>
       </button>

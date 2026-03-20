@@ -40,7 +40,7 @@ export function ContactForm({ action, accessKey }: { action: string; accessKey: 
   return (
     <>
       {(status === 'success' || status === 'error') && (
-        <div className="fixed bottom-6 right-6 z-50">
+        <div className="fixed right-6 bottom-6 z-50">
           <Toast
             type={status === 'success' ? 'success' : 'danger'}
             message={
@@ -52,7 +52,7 @@ export function ContactForm({ action, accessKey }: { action: string; accessKey: 
           />
         </div>
       )}
-      <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-8 lg:gap-12">
+      <form onSubmit={handleSubmit} className="grid gap-8 md:grid-cols-2 lg:gap-12">
         <div>
           <div className="grid md:grid-cols-2 md:gap-6">
             <FormField name="first_name" id="first_name" label="First name" />
@@ -81,12 +81,12 @@ export function ContactForm({ action, accessKey }: { action: string; accessKey: 
           <YesNoRadioGroup name="vehicle_neutral" label="Does the vehicle go into neutral?" />
 
           {/* Additional Information */}
-          <div className="relative z-0 w-full mb-5 group">
+          <div className="group relative z-0 mb-5 w-full">
             <textarea
               id="message"
               name="message"
               rows={3}
-              className="bg-neutral-secondary-medium border border-default-medium text-heading text-normal rounded-base focus:ring-yellow focus:border-yellow block w-full p-3.5 shadow-xs placeholder:text-heading"
+              className="bg-neutral-secondary-medium border-default-medium text-heading text-normal rounded-base focus:ring-yellow focus:border-yellow placeholder:text-heading block w-full border p-3.5 shadow-xs"
               placeholder="Any additional information"
             ></textarea>
           </div>
@@ -96,7 +96,7 @@ export function ContactForm({ action, accessKey }: { action: string; accessKey: 
           <button
             type="submit"
             disabled={status === 'loading'}
-            className="text-white bg-brand box-border border border-transparent hover:bg-brand-light focus:ring-2 focus:ring-yellow shadow-xs font-medium leading-5 rounded-base text-normal px-4 py-2.5 focus:outline-none disabled:opacity-60 disabled:cursor-not-allowed"
+            className="bg-brand hover:bg-brand-light focus:ring-yellow rounded-base text-normal box-border border border-transparent px-4 py-2.5 leading-5 font-medium text-white shadow-xs focus:ring-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-60"
           >
             {status === 'loading' ? 'Sending…' : 'Request quote'}
           </button>

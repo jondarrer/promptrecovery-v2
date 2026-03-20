@@ -6,7 +6,7 @@ export function Rating({ rating, outOf = 5, size = 24 }: { rating: number; outOf
       stars.push(
         <svg
           key={i}
-          className="w-5 h-5 text-fg-yellow"
+          className="text-fg-yellow h-5 w-5"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           width={size}
@@ -21,7 +21,7 @@ export function Rating({ rating, outOf = 5, size = 24 }: { rating: number; outOf
       stars.push(
         <svg
           key={i}
-          className="w-5 h-5 text-fg-disabled"
+          className="text-fg-disabled h-5 w-5"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           width={size}

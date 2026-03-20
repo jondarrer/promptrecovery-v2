@@ -1,30 +1,34 @@
 # Prompt Recovery
 
-Website for [promptrecovery.co.uk](https://promptrecovery.co.uk) — a small business site for a Watford-based roadside recovery company. Built with Next.js, TypeScript, and Tailwind CSS, and deployed as a static site to GitHub Pages. UI interactions are powered by Flowbite; icons come from Lucide React; quote requests are submitted via Web3Forms.
+Website for [promptrecovery.co.uk](https://promptrecovery.co.uk) — a small business site for a Watford-based roadside
+recovery company. Built with Next.js, TypeScript, and Tailwind CSS, and deployed as a static site to GitHub Pages. UI
+interactions are powered by Flowbite; icons come from Lucide React; quote requests are submitted via Web3Forms.
 
 ---
 
 ## Tech Stack
 
-| Tool | Version | Purpose |
-| --- | --- | --- |
-| [Next.js](https://nextjs.org/) | 15 | React framework, static export |
-| [React](https://react.dev/) | 19 | UI library |
-| [TypeScript](https://www.typescriptlang.org/) | 5 | Type safety |
-| [Tailwind CSS](https://tailwindcss.com/) | 4 | Utility-first styling |
-| [Flowbite](https://flowbite.com/) | 4 | Interactive UI components (carousel, mobile menu) |
-| [Lucide React](https://lucide.dev/) | 0.577 | Icon library |
-| [Web3Forms](https://web3forms.com/) | — | Static-site-compatible contact form submissions |
-| [@next/third-parties](https://nextjs.org/docs/app/guides/third-party-libraries) | 15 | Google Analytics & GTM integration |
-| Node.js `node:test` | built-in | Unit testing |
-| [tsx](https://tsx.is/) | 4 | TypeScript loader for tests |
+| Tool                                                                            | Version  | Purpose                                           |
+| ------------------------------------------------------------------------------- | -------- | ------------------------------------------------- |
+| [Next.js](https://nextjs.org/)                                                  | 15       | React framework, static export                    |
+| [React](https://react.dev/)                                                     | 19       | UI library                                        |
+| [TypeScript](https://www.typescriptlang.org/)                                   | 5        | Type safety                                       |
+| [Tailwind CSS](https://tailwindcss.com/)                                        | 4        | Utility-first styling                             |
+| [Flowbite](https://flowbite.com/)                                               | 4        | Interactive UI components (carousel, mobile menu) |
+| [Lucide React](https://lucide.dev/)                                             | 0.577    | Icon library                                      |
+| [Web3Forms](https://web3forms.com/)                                             | —        | Static-site-compatible contact form submissions   |
+| [@next/third-parties](https://nextjs.org/docs/app/guides/third-party-libraries) | 15       | Google Analytics & GTM integration                |
+| Node.js `node:test`                                                             | built-in | Unit testing                                      |
+| [tsx](https://tsx.is/)                                                          | 4        | TypeScript loader for tests                       |
 
 ---
 
 ## Prerequisites
 
 - **Node.js 22+** — matches the CI environment. Node 18/20 may work but are untested locally.
-- **npm 10.5+** — Tailwind v4 uses a native Rust module (`@tailwindcss/oxide`) distributed via npm optional dependencies. Older npm releases (pre-10.5) have a bug where optional sub-packages are silently skipped, causing a "Cannot find native binding" error at runtime. See [Troubleshooting](#troubleshooting) if you hit this.
+- **npm 10.5+** — Tailwind v4 uses a native Rust module (`@tailwindcss/oxide`) distributed via npm optional
+  dependencies. Older npm releases (pre-10.5) have a bug where optional sub-packages are silently skipped, causing a
+  "Cannot find native binding" error at runtime. See [Troubleshooting](#troubleshooting) if you hit this.
 
 Check your versions:
 
@@ -57,20 +61,21 @@ npm install
 
 ## Configuration & Environment Variables
 
-Runtime configuration is centralised in `src/app/config.ts`, which reads from environment variables. Three variables are required:
+Runtime configuration is centralised in `src/app/config.ts`, which reads from environment variables. Three variables are
+required:
 
-| Variable | Description | Where to get it |
-| --- | --- | --- |
-| `FORM_ACCESS_KEY` | Web3Forms access key — routes quote requests to your email | [web3forms.com](https://web3forms.com/) → your account |
-| `GOOGLE_TAG_MANAGER_ID` | GTM container ID (format: `GTM-XXXXXXX`) | [tagmanager.google.com](https://tagmanager.google.com/) |
-| `GOOGLE_ANALYTICS_ID` | GA4 measurement ID (format: `G-XXXXXXXXXX`) | [analytics.google.com](https://analytics.google.com/) |
+| Variable                | Description                                                | Where to get it                                         |
+| ----------------------- | ---------------------------------------------------------- | ------------------------------------------------------- |
+| `FORM_ACCESS_KEY`       | Web3Forms access key — routes quote requests to your email | [web3forms.com](https://web3forms.com/) → your account  |
+| `GOOGLE_TAG_MANAGER_ID` | GTM container ID (format: `GTM-XXXXXXX`)                   | [tagmanager.google.com](https://tagmanager.google.com/) |
+| `GOOGLE_ANALYTICS_ID`   | GA4 measurement ID (format: `G-XXXXXXXXXX`)                | [analytics.google.com](https://analytics.google.com/)   |
 
 ### Script-only variables (local use, not needed in CI)
 
-| Variable | Description | Where to get it |
-| --- | --- | --- |
-| `GOOGLE_PLACE_ID` | Your Google Business place ID — used by `fetch-reviews` to identify which business to fetch | [Find your Place ID](https://developers.google.com/maps/documentation/places/web-service/place-id) |
-| `GOOGLE_MAPS_API_KEY` | Google Maps API key with **Places API (New)** enabled | [Google Cloud Console](https://console.cloud.google.com/) → APIs & Services → Credentials |
+| Variable              | Description                                                                                 | Where to get it                                                                                    |
+| --------------------- | ------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `GOOGLE_PLACE_ID`     | Your Google Business place ID — used by `fetch-reviews` to identify which business to fetch | [Find your Place ID](https://developers.google.com/maps/documentation/places/web-service/place-id) |
+| `GOOGLE_MAPS_API_KEY` | Google Maps API key with **Places API (New)** enabled                                       | [Google Cloud Console](https://console.cloud.google.com/) → APIs & Services → Credentials          |
 
 These two are only read by `scripts/fetch-google-reviews.mjs` and are never injected into the Next.js build.
 
@@ -88,7 +93,8 @@ Then edit `.env` with real values. The file is gitignored — never commit it.
 
 ### CI / GitHub Actions (deployed site)
 
-The workflow reads these variables from **environment secrets** scoped to the `github-pages` environment, and injects them at build time.
+The workflow reads these variables from **environment secrets** scoped to the `github-pages` environment, and injects
+them at build time.
 
 **One-time setup** (per variable):
 
@@ -106,7 +112,8 @@ env:
   GOOGLE_ANALYTICS_ID: ${{ secrets.GOOGLE_ANALYTICS_ID }}
 ```
 
-If a secret is missing or empty, the build will still succeed but the corresponding feature (form submissions, analytics) will be silently disabled.
+If a secret is missing or empty, the build will still succeed but the corresponding feature (form submissions,
+analytics) will be silently disabled.
 
 ---
 
@@ -116,9 +123,11 @@ If a secret is missing or empty, the build will still succeed but the correspond
 npm run dev
 ```
 
-Opens a local development server at [http://localhost:3000](http://localhost:3000) with hot-reload. Changes to files under `src/` are reflected instantly without a page refresh.
+Opens a local development server at [http://localhost:3000](http://localhost:3000) with hot-reload. Changes to files
+under `src/` are reflected instantly without a page refresh.
 
-> The dev server uses a Node.js runtime — it does **not** represent the final static output. Always verify the production build before deploying (see below).
+> The dev server uses a Node.js runtime — it does **not** represent the final static output. Always verify the
+> production build before deploying (see below).
 
 ---
 
@@ -128,7 +137,8 @@ Opens a local development server at [http://localhost:3000](http://localhost:300
 npm run build
 ```
 
-Next.js compiles and exports the site to the `out/` directory as plain HTML, CSS, and JavaScript — no server required. The `out/` folder is what gets deployed to GitHub Pages.
+Next.js compiles and exports the site to the `out/` directory as plain HTML, CSS, and JavaScript — no server required.
+The `out/` folder is what gets deployed to GitHub Pages.
 
 To preview the production output locally:
 
@@ -195,7 +205,8 @@ describe('My feature', () => {
 
 ### Test output
 
-The native runner produces TAP-compatible output by default. Pass `--test-reporter=spec` for a more human-readable format:
+The native runner produces TAP-compatible output by default. Pass `--test-reporter=spec` for a more human-readable
+format:
 
 ```bash
 node --import tsx --test --test-reporter=spec 'src/**/*.test.ts'
@@ -266,11 +277,15 @@ node --import tsx --test --test-reporter=spec 'src/**/*.test.ts'
 
 ## UI Components — Flowbite
 
-[Flowbite](https://flowbite.com/) provides interactive component behaviours (carousels, collapsible menus, toasts) via `data-*` attributes wired up by a small JavaScript library. It is installed via npm and used **without** a CDN `<script>` tag.
+[Flowbite](https://flowbite.com/) provides interactive component behaviours (carousels, collapsible menus, toasts) via
+`data-*` attributes wired up by a small JavaScript library. It is installed via npm and used **without** a CDN
+`<script>` tag.
 
 ### Initialisation
 
-Flowbite must be initialised after the DOM is ready. Because the site uses client-side navigation (Next.js App Router), the library must also re-initialise after every route change to re-wire components on new pages. This is handled in `navbar.tsx`, which is already a client component:
+Flowbite must be initialised after the DOM is ready. Because the site uses client-side navigation (Next.js App Router),
+the library must also re-initialise after every route change to re-wire components on new pages. This is handled in
+`navbar.tsx`, which is already a client component:
 
 ```tsx
 useEffect(() => {
@@ -278,34 +293,41 @@ useEffect(() => {
 }, [pathname]); // re-run on every navigation
 ```
 
-The dynamic `import()` keeps Flowbite out of the server bundle and defers loading until it is actually needed in the browser.
+The dynamic `import()` keeps Flowbite out of the server bundle and defers loading until it is actually needed in the
+browser.
 
 ### Components in use
 
-| Component | File | Key attributes |
-| --- | --- | --- |
-| Carousel | `src/components/carousel.tsx` | `data-carousel="static"`, `data-carousel-item`, `data-carousel-prev`, `data-carousel-next`, `data-carousel-slide-to` |
-| Mobile navbar | `src/components/navbar.tsx` | `data-collapse-toggle`, `aria-controls`, `aria-expanded` |
+| Component     | File                          | Key attributes                                                                                                       |
+| ------------- | ----------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| Carousel      | `src/components/carousel.tsx` | `data-carousel="static"`, `data-carousel-item`, `data-carousel-prev`, `data-carousel-next`, `data-carousel-slide-to` |
+| Mobile navbar | `src/components/navbar.tsx`   | `data-collapse-toggle`, `aria-controls`, `aria-expanded`                                                             |
 
 ### What Flowbite is NOT used for
 
-The `Toast` component uses React state (an `onClose` callback) rather than Flowbite's `data-dismiss-target` attribute. This is intentional — Flowbite's dismiss requires the element to already be in the DOM when the library initialises, which is not guaranteed for dynamically rendered toasts.
+The `Toast` component uses React state (an `onClose` callback) rather than Flowbite's `data-dismiss-target` attribute.
+This is intentional — Flowbite's dismiss requires the element to already be in the DOM when the library initialises,
+which is not guaranteed for dynamically rendered toasts.
 
 ### Adding new Flowbite components
 
 1. Find the component in the [Flowbite docs](https://flowbite.com/docs/).
 2. Copy the HTML and translate to JSX (camelCase attributes, `className` instead of `class`).
-3. Flowbite's JS picks up the `data-*` attributes automatically after the next `initFlowbite()` call — no extra wiring needed.
+3. Flowbite's JS picks up the `data-*` attributes automatically after the next `initFlowbite()` call — no extra wiring
+   needed.
 
 ---
 
 ## Icons — Lucide React
 
-[Lucide React](https://lucide.dev/) provides 1,500+ consistent, open source icons as React components. Each icon is a lightweight SVG that accepts standard props (`className`, `size`, `strokeWidth`, `aria-hidden`, etc.).
+[Lucide React](https://lucide.dev/) provides 1,500+ consistent, open source icons as React components. Each icon is a
+lightweight SVG that accepts standard props (`className`, `size`, `strokeWidth`, `aria-hidden`, etc.).
 
 ### Barrel re-export — `src/components/icons.ts`
 
-All icons used in the project are re-exported from a single barrel file rather than imported directly from `lucide-react` throughout the codebase. This keeps imports consistent and makes it easy to see which icons are in use at a glance.
+All icons used in the project are re-exported from a single barrel file rather than imported directly from
+`lucide-react` throughout the codebase. This keeps imports consistent and makes it easy to see which icons are in use at
+a glance.
 
 ```ts
 // src/components/icons.ts
@@ -337,38 +359,40 @@ export { ..., MapPin } from 'lucide-react';
 // 2. Use in a component
 import { MapPin } from '@/components/icons';
 
-<MapPin className="w-5 h-5" aria-hidden="true" />
+<MapPin className="h-5 w-5" aria-hidden="true" />;
 ```
 
 ### Usage conventions
 
-| Concern | Convention |
-| --- | --- |
-| Size | Prefer Tailwind classes (`className="w-5 h-5"`) for consistency; use the `size` prop only when a numeric value is clearer (e.g. `size={14}` for inline text icons) |
-| Decorative icons | Add `aria-hidden="true"` so screen readers skip them |
-| Meaningful icons | Omit `aria-hidden` and add an `aria-label` or adjacent `<span className="sr-only">` |
-| Stroke width | Leave at the default (`2`) unless the design requires otherwise |
+| Concern          | Convention                                                                                                                                                         |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Size             | Prefer Tailwind classes (`className="w-5 h-5"`) for consistency; use the `size` prop only when a numeric value is clearer (e.g. `size={14}` for inline text icons) |
+| Decorative icons | Add `aria-hidden="true"` so screen readers skip them                                                                                                               |
+| Meaningful icons | Omit `aria-hidden` and add an `aria-label` or adjacent `<span className="sr-only">`                                                                                |
+| Stroke width     | Leave at the default (`2`) unless the design requires otherwise                                                                                                    |
 
 ### Custom SVGs (non-Lucide)
 
 Two icons in the codebase are intentionally **not** from Lucide:
 
-| Icon | Location | Reason |
-| --- | --- | --- |
-| WhatsApp logo | `src/components/navbar.tsx` | Brand icon with a specific green gradient; no Lucide equivalent |
+| Icon                  | Location                            | Reason                                                                     |
+| --------------------- | ----------------------------------- | -------------------------------------------------------------------------- |
+| WhatsApp logo         | `src/components/navbar.tsx`         | Brand icon with a specific green gradient; no Lucide equivalent            |
 | Decorative quote mark | `src/components/review-card-v2.tsx` | Custom shape with a non-standard viewBox, part of the card's visual design |
 
 ---
 
 ## Content & SEO Data
 
-All editable content lives in JSON files under `src/app/data/`. These are imported and re-exported via `src/app/data/index.ts`.
+All editable content lives in JSON files under `src/app/data/`. These are imported and re-exported via
+`src/app/data/index.ts`.
 
 ### `seo.json`
 
 The single source of truth for business information used across metadata and structured data:
 
-- **Next.js `metadata` export** in `layout.tsx` — populates `<title>`, `<meta name="description">`, Open Graph, and Twitter Card tags.
+- **Next.js `metadata` export** in `layout.tsx` — populates `<title>`, `<meta name="description">`, Open Graph, and
+  Twitter Card tags.
 - **`LocalBusiness` + `AggregateRating` JSON-LD** in `layout.tsx` — injected on every page for Google's rich results.
 - **`FAQPage` JSON-LD** in `faqs/page.tsx` — built from `faqs.json` at build time.
 
@@ -378,7 +402,9 @@ To update business details (address, phone, hours, social links), edit `seo.json
 
 ## Contact Form — Web3Forms
 
-The quote request form (`src/components/contact-form.tsx`) submits to [Web3Forms](https://web3forms.com/), a third-party service that forwards submissions to an email address. This works without a backend server, making it compatible with a static export.
+The quote request form (`src/components/contact-form.tsx`) submits to [Web3Forms](https://web3forms.com/), a third-party
+service that forwards submissions to an email address. This works without a backend server, making it compatible with a
+static export.
 
 The access key is set in `src/app/page.tsx`:
 
@@ -387,7 +413,8 @@ const action = 'https://api.web3forms.com/submit';
 const accessKey = 'your-access-key-here';
 ```
 
-On submit, the form POSTs a JSON body containing `access_key` and all form field values. A `Toast` notification confirms success or failure. On success, the form resets.
+On submit, the form POSTs a JSON body containing `access_key` and all form field values. A `Toast` notification confirms
+success or failure. On success, the form resets.
 
 > The access key is a public identifier (not a secret) — it is safe to commit and visible in the browser.
 
@@ -395,7 +422,9 @@ On submit, the form POSTs a JSON body containing `access_key` and all form field
 
 ## Google Reviews — `fetch-reviews`
 
-Google reviews displayed on the homepage are stored as static JSON in `src/app/data/google-reviews.json`. They are fetched on demand (not at build time) using a local script, then committed so the static site can include them without a server.
+Google reviews displayed on the homepage are stored as static JSON in `src/app/data/google-reviews.json`. They are
+fetched on demand (not at build time) using a local script, then committed so the static site can include them without a
+server.
 
 ### Running the script
 
@@ -434,13 +463,16 @@ The output shape matches the `GoogleReviews` type in `src/types.ts`:
 
 ### Setup
 
-Before running the script, add the two variables to your `.env` file (see [Script-only variables](#script-only-variables-local-use-not-needed-in-ci) above).
+Before running the script, add the two variables to your `.env` file (see
+[Script-only variables](#script-only-variables-local-use-not-needed-in-ci) above).
 
-You will also need a Google Cloud project with the **Places API (New)** enabled, and an API key restricted to that API. The key is only used locally and is never exposed in the browser or committed to the repository.
+You will also need a Google Cloud project with the **Places API (New)** enabled, and an API key restricted to that API.
+The key is only used locally and is never exposed in the browser or committed to the repository.
 
 ### Keeping reviews up to date
 
-Run `npm run fetch-reviews` whenever you want to pull in new reviews, then commit the updated `src/app/data/google-reviews.json`. The next deployment will include the latest data automatically.
+Run `npm run fetch-reviews` whenever you want to pull in new reviews, then commit the updated
+`src/app/data/google-reviews.json`. The next deployment will include the latest data automatically.
 
 ---
 
@@ -457,8 +489,8 @@ Every push to `main`:
 
 ### One-time GitHub setup
 
-1. **Enable GitHub Pages via Actions:**
-   Go to your repository → **Settings** → **Pages** → **Source** → select **GitHub Actions**.
+1. **Enable GitHub Pages via Actions:** Go to your repository → **Settings** → **Pages** → **Source** → select **GitHub
+   Actions**.
 
 2. **Configure the custom domain:**
    - In **Settings → Pages → Custom domain**, enter `promptrecovery.co.uk`.
@@ -467,12 +499,12 @@ Every push to `main`:
 
 3. **DNS records** (at your domain registrar):
 
-   | Type | Host | Value |
-   | --- | --- | --- |
-   | `A` | `@` | `185.199.108.153` |
-   | `A` | `@` | `185.199.109.153` |
-   | `A` | `@` | `185.199.110.153` |
-   | `A` | `@` | `185.199.111.153` |
+   | Type    | Host  | Value                       |
+   | ------- | ----- | --------------------------- |
+   | `A`     | `@`   | `185.199.108.153`           |
+   | `A`     | `@`   | `185.199.109.153`           |
+   | `A`     | `@`   | `185.199.110.153`           |
+   | `A`     | `@`   | `185.199.111.153`           |
    | `CNAME` | `www` | `<your-username>.github.io` |
 
    DNS propagation can take up to 48 hours. Check status at **Settings → Pages**.
@@ -488,12 +520,16 @@ You can also deploy without pushing code via the **Actions** tab → **Deploy to
 ### `next.config.ts`
 
 - `output: 'export'` — static export mode; no Node.js server at runtime.
-- `images.unoptimized: true` — Next.js image optimisation requires a server; this disables it for static export. Use Next.js `<Image />` tags with this flag (supports the basePath setting, useful when running in a folder).
-- `trailingSlash: true` — produces `about/index.html` instead of `about.html`, which is the convention expected by GitHub Pages.
+- `images.unoptimized: true` — Next.js image optimisation requires a server; this disables it for static export. Use
+  Next.js `<Image />` tags with this flag (supports the basePath setting, useful when running in a folder).
+- `trailingSlash: true` — produces `about/index.html` instead of `about.html`, which is the convention expected by
+  GitHub Pages.
 
 ### `globals.css` / Tailwind v4
 
-Tailwind v4 uses a **CSS-first** configuration model — there is no `tailwind.config.ts`. A single `@import "tailwindcss"` replaces the three directives from v3. Customise the design system using a `@theme` block with CSS custom properties:
+Tailwind v4 uses a **CSS-first** configuration model — there is no `tailwind.config.ts`. A single
+`@import "tailwindcss"` replaces the three directives from v3. Customise the design system using a `@theme` block with
+CSS custom properties:
 
 ```css
 @theme {
@@ -506,7 +542,8 @@ Tailwind auto-detects source files from your project; no `content` globs to conf
 
 ### `public/.nojekyll`
 
-An empty file that prevents GitHub Pages from running the Jekyll static site generator on your `out/` directory. Without it, files and folders starting with `_` (which Next.js uses internally) would be silently ignored by GitHub Pages.
+An empty file that prevents GitHub Pages from running the Jekyll static site generator on your `out/` directory. Without
+it, files and folders starting with `_` (which Next.js uses internally) would be silently ignored by GitHub Pages.
 
 ---
 
@@ -524,7 +561,9 @@ Uses Next.js's built-in ESLint configuration. Linting also runs as part of the b
 
 ### "Cannot find native binding" on `npm run dev`
 
-Tailwind v4 uses a native Rust module (`@tailwindcss/oxide`) that is distributed as a platform-specific optional npm package. Older versions of npm have a bug where these optional sub-packages are not installed, even though the parent package is present.
+Tailwind v4 uses a native Rust module (`@tailwindcss/oxide`) that is distributed as a platform-specific optional npm
+package. Older versions of npm have a bug where these optional sub-packages are not installed, even though the parent
+package is present.
 
 **Fix:**
 

@@ -8,16 +8,16 @@ export function GoogleUserProfile({ userProfile, children }: { userProfile: Goog
   return (
     <Link
       href={userProfile.authorUrl}
-      className="flex items-center gap-2.5 focus-visible:ring-2 focus-visible:ring-yellow"
+      className="focus-visible:ring-yellow flex items-center gap-2.5 focus-visible:ring-2"
     >
       <Image
-        className="w-12 h-12 rounded-full bg-neutral-300"
+        className="h-12 w-12 rounded-full bg-neutral-300"
         width={48}
         height={48}
         src={userProfile.authorPhoto}
         alt={userProfile.author}
       />
-      <div className="font-medium text-heading">
+      <div className="text-heading font-medium">
         <div className="text-left">{userProfile.author}</div>
         {children}
       </div>

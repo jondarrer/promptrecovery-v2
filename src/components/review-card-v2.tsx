@@ -7,7 +7,7 @@ export function ReviewCardV2({ review }: { review: GoogleReview }) {
   return (
     <>
       {/*-- Testimonials --*/}
-      <div className="relative max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+      <div className="relative mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
         {/*-- Blockquote --*/}
         <blockquote className="text-center lg:mx-auto lg:w-3/5">
           <GoogleUserProfile userProfile={review}>
@@ -16,9 +16,9 @@ export function ReviewCardV2({ review }: { review: GoogleReview }) {
           </GoogleUserProfile>
 
           <div className="mt-6 lg:mt-10">
-            <p className="relative text-lg sm:text-xl md:text-xl md:leading-normal font-medium text-foreground">
+            <p className="text-foreground relative text-lg font-medium sm:text-xl md:text-xl md:leading-normal">
               <svg
-                className="absolute top-0 start-4 lg:start-0 transform -translate-x-8 -translate-y-8 size-16 text-black/20 sm:h-24 sm:w-24"
+                className="absolute start-4 top-0 size-16 -translate-x-8 -translate-y-8 transform text-black/20 sm:h-24 sm:w-24 lg:start-0"
                 width="16"
                 height="13"
                 viewBox="0 0 16 13"
@@ -31,7 +31,7 @@ export function ReviewCardV2({ review }: { review: GoogleReview }) {
                   fill="currentColor"
                 />
               </svg>
-              <span className="relative z-10 italic text-foreground text-xl font-light">{review.text}</span>
+              <span className="text-foreground relative z-10 text-xl font-light italic">{review.text}</span>
             </p>
           </div>
         </blockquote>

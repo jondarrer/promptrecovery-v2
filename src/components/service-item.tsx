@@ -7,12 +7,12 @@ export function ServiceItem({ service }: { service: ItemWithIcon }) {
   return (
     <>
       {/* Card */}
-      <div className="group flex gap-y-6 gap-x-4 size-full hover:bg-muted-hover focus:outline-hidden focus:bg-muted-focus rounded-lg p-5">
+      <div className="group hover:bg-muted-hover focus:bg-muted-focus flex size-full gap-x-4 gap-y-6 rounded-lg p-5 focus:outline-hidden">
         <Icon className="size-8 shrink-0" />
         <div>
           <div>
-            <h3 className="block font-normal text-foreground">{service.name}</h3>
-            <p className="font-thin text-muted-foreground-2">{service.description}</p>
+            <h3 className="text-foreground block font-normal">{service.name}</h3>
+            <p className="text-muted-foreground-2 font-thin">{service.description}</p>
           </div>
         </div>
       </div>

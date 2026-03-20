@@ -30,26 +30,26 @@ export default function HomePage() {
   return (
     <main className="flex min-h-screen flex-col justify-center">
       {/*-- Hero --*/}
-      <div className="relative bg-linear-to-bl from-primary-100 via-transparent dark:from-primary-950 dark:via-transparent bg-light-grey">
-        <div className="max-w-7xl pt-42 px-4 py-10 sm:px-6 lg:px-8 lg:py-14 lg:pt-36 mx-auto">
+      <div className="from-primary-100 dark:from-primary-950 bg-light-grey relative bg-linear-to-bl via-transparent dark:via-transparent">
+        <div className="mx-auto max-w-7xl px-4 py-10 pt-42 sm:px-6 lg:px-8 lg:py-14 lg:pt-36">
           {/*-- Grid --*/}
-          <div className="grid items-center md:grid-cols-2 gap-8 lg:gap-12">
+          <div className="grid items-center gap-8 md:grid-cols-2 lg:gap-12">
             <div>
               {/*-- Title --*/}
               <div className="mt-4 md:mb-12">
-                <h1 className="mb-4 font-semibold text-foreground text-4xl lg:text-5xl">
+                <h1 className="text-foreground mb-4 text-4xl font-semibold lg:text-5xl">
                   Roadside recovery you can rely on
                 </h1>
-                <h2 className="mb-4 font-normal text-foreground text-2xl lg:text-3xl">
+                <h2 className="text-foreground mb-4 text-2xl font-normal lg:text-3xl">
                   Serving Watford and the surrounding areas
                 </h2>
-                <p className="mb-4 text-muted-foreground-2 text-xl font-light">
+                <p className="text-muted-foreground-2 mb-4 text-xl font-light">
                   Fast, friendly and affordable help for vehicles under 4 tonnes
                 </p>
                 <p className="pt-4">
                   <Link
                     href={`tel:${seo.phone}`}
-                    className="inline text-white font-normal bg-brand hover:bg-brand-light box-border border border-transparent focus:ring-2 focus:ring-yellow shadow-xs leading-5 rounded-base px-3 py-3 focus:outline-none text-md"
+                    className="bg-brand hover:bg-brand-light focus:ring-yellow rounded-base text-md box-border inline border border-transparent px-3 py-3 leading-5 font-normal text-white shadow-xs focus:ring-2 focus:outline-none"
                   >
                     Call Now
                   </Link>
@@ -74,8 +74,8 @@ export default function HomePage() {
       {/*-- End Hero --*/}
       {/* About Section */}
       <Section classNames="bg-light-yellow">
-        <div className="max-w-7xl pt-18 px-4 py-10 sm:px-6 lg:px-8 lg:py-14 lg:pt-18 mx-auto">
-          <div className="grid items-center md:grid-cols-2 gap-8 lg:gap-12">
+        <div className="mx-auto max-w-7xl px-4 py-10 pt-18 sm:px-6 lg:px-8 lg:py-14 lg:pt-18">
+          <div className="grid items-center gap-8 md:grid-cols-2 lg:gap-12">
             <div>
               <SectionHeading sectionName="About" />
               <p className="text-xl font-light">
@@ -85,7 +85,7 @@ export default function HomePage() {
               <p className="mt-8">
                 <Link
                   href="/about"
-                  className="hidden xs:inline text-navy font-normal leading-5 text-xl hover:underline underline-navy underline-offset-4"
+                  className="xs:inline text-navy underline-navy hidden text-xl leading-5 font-normal underline-offset-4 hover:underline"
                 >
                   Learn more about us
                 </Link>
@@ -104,7 +104,7 @@ export default function HomePage() {
       {/* End About Section */}
       {/* Contact Form Section */}
       <Section>
-        <div className="max-w-7xl pt-18 px-4 py-10 sm:px-6 lg:px-8 lg:py-14 lg:pt-18 mx-auto">
+        <div className="mx-auto max-w-7xl px-4 py-10 pt-18 sm:px-6 lg:px-8 lg:py-14 lg:pt-18">
           <SectionHeading sectionName="Request a quote" />
           <ContactForm action={config.form.action} accessKey={config.form.accessKey} />
         </div>
@@ -112,9 +112,9 @@ export default function HomePage() {
       {/* End Contact Form Section */}
       {/* Services Section */}
       <Section classNames="bg-light-grey">
-        <div className="max-w-7xl pt-18 px-4 py-10 sm:px-6 lg:px-8 lg:py-14 lg:pt-18 mx-auto">
+        <div className="mx-auto max-w-7xl px-4 py-10 pt-18 sm:px-6 lg:px-8 lg:py-14 lg:pt-18">
           <SectionHeading sectionName="Services" />
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 items-center gap-6">
+          <div className="grid items-center gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => (
               <ServiceItem key={service.name} service={service} />
             ))}
@@ -124,9 +124,9 @@ export default function HomePage() {
       {/* End Services Section */}
       {/* Why Choose Us Section */}
       <Section classNames="bg-light-grey">
-        <div className="max-w-7xl pt-18 px-4 py-10 sm:px-6 lg:px-8 lg:py-14 lg:pt-18 mx-auto">
+        <div className="mx-auto max-w-7xl px-4 py-10 pt-18 sm:px-6 lg:px-8 lg:py-14 lg:pt-18">
           <SectionHeading sectionName="Why choose us" />
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 items-center gap-6">
+          <div className="grid items-center gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {reasonsToChooseNick.map((reason) => (
               <ServiceItem key={reason.name} service={reason} />
             ))}
@@ -136,9 +136,9 @@ export default function HomePage() {
       {/* End Why Choose Us Section */}
       {/* Find Us Section */}
       <Section>
-        <div className="max-w-7xl pt-18 px-4 py-10 sm:px-6 lg:px-8 lg:py-14 lg:pt-18 mx-auto">
+        <div className="mx-auto max-w-7xl px-4 py-10 pt-18 sm:px-6 lg:px-8 lg:py-14 lg:pt-18">
           <SectionHeading sectionName="Find us" />
-          <h3 className="text-xl text-center font-thin mb-8">We operate throughout Watford and surrounding areas.</h3>
+          <h3 className="mb-8 text-center text-xl font-thin">We operate throughout Watford and surrounding areas.</h3>
           <GoogleMap />
         </div>
       </Section>

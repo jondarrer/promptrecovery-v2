@@ -31,13 +31,13 @@ export default function FaqsPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageSchema) }} />
       {/* FAQ */}
-      <div className="max-w-340 px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto pt-42 lg:pt-42">
+      <div className="mx-auto max-w-340 px-4 py-10 pt-42 sm:px-6 lg:px-8 lg:py-14 lg:pt-42">
         <PageHeader
           title="Frequently asked questions"
           subtitle="Got a question before booking? Here are answers to the most common things customers ask about our vehicle recovery services in Watford and the surrounding area."
         />
 
-        <div className="max-w-2xl mx-auto divide-y divide-line-2">
+        <div className="divide-line-2 mx-auto max-w-2xl divide-y">
           {faqs.map((faq) => (
             <FaqItem key={faq.question} faq={faq} />
           ))}

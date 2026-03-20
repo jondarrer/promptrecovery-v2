@@ -18,24 +18,24 @@ export function Toast({
   return (
     <div
       id={`toast-${type}`}
-      className="flex items-center w-full max-w-sm p-4 text-body bg-neutral-primary-soft rounded-base shadow-xs border border-default"
+      className="text-body bg-neutral-primary-soft rounded-base border-default flex w-full max-w-sm items-center border p-4 shadow-xs"
       role="alert"
     >
       <div
-        className={`inline-flex items-center justify-center shrink-0 w-7 h-7 ${TOAST_STYLES.color} ${TOAST_STYLES.bg} rounded`}
+        className={`inline-flex h-7 w-7 shrink-0 items-center justify-center ${TOAST_STYLES.color} ${TOAST_STYLES.bg} rounded`}
       >
-        <Check className="w-5 h-5" aria-hidden="true" />
+        <Check className="h-5 w-5" aria-hidden="true" />
         <span className="sr-only">Check icon</span>
       </div>
       <div className="ms-3 text-sm font-normal">{message}</div>
       <button
         type="button"
         onClick={onClose}
-        className="ms-auto flex items-center justify-center text-body hover:text-heading bg-transparent box-border border border-transparent hover:bg-neutral-secondary-medium focus:ring-4 focus:ring-yellow font-medium leading-5 rounded text-sm h-8 w-8 focus:outline-none"
+        className="text-body hover:text-heading hover:bg-neutral-secondary-medium focus:ring-yellow ms-auto box-border flex h-8 w-8 items-center justify-center rounded border border-transparent bg-transparent text-sm leading-5 font-medium focus:ring-4 focus:outline-none"
         aria-label="Close"
       >
         <span className="sr-only">Close</span>
-        <X className="w-5 h-5" aria-hidden="true" />
+        <X className="h-5 w-5" aria-hidden="true" />
       </button>
     </div>
   );

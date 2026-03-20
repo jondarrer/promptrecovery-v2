@@ -72,7 +72,7 @@ export default function Navbar({ children, phoneNumber }: { children?: React.Rea
       <li key={pageName}>
         {isActive ? (
           <span
-            className="block py-2 px-3 text-yellow bg-brand font-normal rounded-sm md:bg-transparent md:p-0 text-xl"
+            className="text-yellow bg-brand block rounded-sm px-3 py-2 text-xl font-normal md:bg-transparent md:p-0"
             aria-current="page"
           >
             {pageName}
@@ -80,7 +80,7 @@ export default function Navbar({ children, phoneNumber }: { children?: React.Rea
         ) : (
           <Link
             href={pageRoute}
-            className="block py-2 px-3 text-white font-normal hover:text-yellow hover:underline hover:decoration-2 hover:underline-offset-4 rounded md:hover:bg-transparent md:border-0 md:hover:text-yellow md:p-0 md:dark:hover:bg-transparent text-xl focus-visible:ring-2 focus-visible:ring-yellow"
+            className="hover:text-yellow md:hover:text-yellow focus-visible:ring-yellow block rounded px-3 py-2 text-xl font-normal text-white hover:underline hover:decoration-2 hover:underline-offset-4 focus-visible:ring-2 md:border-0 md:p-0 md:hover:bg-transparent md:dark:hover:bg-transparent"
             onClick={() => closeMenu()}
           >
             {pageName}
@@ -91,11 +91,11 @@ export default function Navbar({ children, phoneNumber }: { children?: React.Rea
   });
 
   return (
-    <nav ref={navRef} className="bg-navy fixed w-full z-40 top-0 inset-s-0 border-b border-default">
-      <div className="max-w-7xl flex flex-wrap items-center justify-between mx-auto px-4 pt-4 pb-0">
+    <nav ref={navRef} className="bg-navy border-default fixed inset-s-0 top-0 z-40 w-full border-b">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between px-4 pt-4 pb-0">
         <Link
           href="/"
-          className="flex items-center space-x-3 rtl:space-x-reverse rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow"
+          className="focus-visible:ring-yellow flex items-center space-x-3 rounded-sm focus-visible:ring-2 focus-visible:outline-none rtl:space-x-reverse"
         >
           <Image
             src={`${basePath}/images/logo-128x128.png`}
@@ -104,18 +104,18 @@ export default function Navbar({ children, phoneNumber }: { children?: React.Rea
             className="size-18"
             alt="Prompt Recovery Logo"
           />
-          <span className="self-center text-xl text-white font-semibold whitespace-nowrap pr-2">Prompt Recovery</span>
+          <span className="self-center pr-2 text-xl font-semibold whitespace-nowrap text-white">Prompt Recovery</span>
         </Link>
-        <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+        <div className="flex space-x-3 md:order-2 md:space-x-0 rtl:space-x-reverse">
           <Link
             href={`tel:${phoneNumber}`}
-            className="hidden xs:inline text-white font-normal bg-brand hover:bg-brand-light box-border border border-transparent focus:ring-2 focus:ring-yellow shadow-xs leading-5 rounded-base px-3 py-3 focus:outline-none text-xl"
+            className="xs:inline bg-brand hover:bg-brand-light focus:ring-yellow rounded-base box-border hidden border border-transparent px-3 py-3 text-xl leading-5 font-normal text-white shadow-xs focus:ring-2 focus:outline-none"
           >
             Call Now
           </Link>
           <Link
             href={`https://wa.me/${phoneNumber}`}
-            className="hidden xs:inline text-white font-normal bg-transparent box-border border border-transparent focus:ring-2 focus:ring-yellow shadow-xs leading-5 rounded-base px-2 py-0 focus:outline-none text-xl ml-4"
+            className="xs:inline focus:ring-yellow rounded-base ml-4 box-border hidden border border-transparent bg-transparent px-2 py-0 text-xl leading-5 font-normal text-white shadow-xs focus:ring-2 focus:outline-none"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -160,21 +160,21 @@ export default function Navbar({ children, phoneNumber }: { children?: React.Rea
           <button
             data-collapse-toggle="navbar-sticky"
             type="button"
-            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-body rounded-base md:hidden hover:bg-neutral-secondary-soft hover:text-heading focus:outline-none focus:ring-2 focus:ring-yellow"
+            className="text-body rounded-base hover:bg-neutral-secondary-soft hover:text-heading focus:ring-yellow inline-flex h-10 w-10 items-center justify-center p-2 text-sm focus:ring-2 focus:outline-none md:hidden"
             aria-controls="navbar-sticky"
             aria-expanded="false"
           >
             <span className="sr-only">Open main menu</span>
-            <Menu className="w-6 h-6" aria-hidden="true" />
+            <Menu className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
-        <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
-          <ul className="flex flex-col py-4 px-4 md:p-0 mt-4 font-medium border border-default rounded-base md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
+        <div className="hidden w-full items-center justify-between md:order-1 md:flex md:w-auto" id="navbar-sticky">
+          <ul className="border-default rounded-base mt-4 flex flex-col border px-4 py-4 font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0 md:p-0 rtl:space-x-reverse">
             {menuItemLinks}
           </ul>
         </div>
       </div>
-      {children && <div className="max-w-7xl flex flex-wrap items-center justify-center mx-auto pb-2">{children}</div>}
+      {children && <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center pb-2">{children}</div>}
     </nav>
   );
 }

@@ -21,14 +21,14 @@ export default function AboutPage() {
   return (
     <>
       {/* About */}
-      <div className="max-w-340 px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto pt-42 lg:pt-42">
+      <div className="mx-auto max-w-340 px-4 py-10 pt-42 sm:px-6 lg:px-8 lg:py-14 lg:pt-42">
         <PageHeader
           title="Meet Prompt Recovery — Watford's trusted recovery specialist"
           subtitle="Prompt Recovery Ltd was built on one mission: to provide fast, friendly and reliable roadside recovery across Watford and nearby areas. Get to know the person behind the wheel and what drives our services."
         />
 
-        <div className="max-w-7xl pt-4 px-4 py-10 sm:px-6 lg:px-8 lg:py-14 lg:pt-4 mx-auto">
-          <div className="grid items-center md:grid-cols-2 gap-8 lg:gap-12">
+        <div className="mx-auto max-w-7xl px-4 py-10 pt-4 sm:px-6 lg:px-8 lg:py-14 lg:pt-4">
+          <div className="grid items-center gap-8 md:grid-cols-2 lg:gap-12">
             <div>
               <SectionHeading sectionName="Hi, I'm Nick - Founder of Prompt Recovery" />
               <p className="text-thin font-light">
@@ -52,11 +52,11 @@ export default function AboutPage() {
           </div>
         </div>
 
-        <div className="max-w-7xl pt-4 px-4 py-10 sm:px-6 lg:px-8 lg:py-14 lg:pt-4 mx-auto">
+        <div className="mx-auto max-w-7xl px-4 py-10 pt-4 sm:px-6 lg:px-8 lg:py-14 lg:pt-4">
           <div>
             <SectionHeading sectionName="Our values" />
 
-            <div className="grid sm:grid-cols-1 lg:grid-cols-4 items-center gap-6">
+            <div className="grid items-center gap-6 sm:grid-cols-1 lg:grid-cols-4">
               {values.map((value) => (
                 <ServiceItem key={value.name} service={value} />
               ))}

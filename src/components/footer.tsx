@@ -29,16 +29,16 @@ export default function Footer({
                 src={`${basePath}/images/logo-128x128.png`}
                 width={128}
                 height={128}
-                className="h-32 me-3"
+                className="me-3 h-32"
                 alt="Prompt Recovery Logo"
               />
-              <span className="text-white self-center text-2xl font-semibold whitespace-nowrap">Prompt Recovery</span>
+              <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">Prompt Recovery</span>
             </Link>
           </div>
-          <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 sm:gap-6">
             <div>
-              <h2 className="mb-6 text-sm font-semibold text-yellow uppercase">Pages</h2>
-              <ul className="text-white font-medium">
+              <h2 className="text-yellow mb-6 text-sm font-semibold uppercase">Pages</h2>
+              <ul className="font-medium text-white">
                 <li className="mb-4">
                   <Link href="/about" className="hover:underline">
                     About
@@ -57,8 +57,8 @@ export default function Footer({
               </ul>
             </div>
             <div>
-              <h2 className="mb-6 text-sm font-semibold text-yellow uppercase">Follow us</h2>
-              <ul className="text-white font-medium">
+              <h2 className="text-yellow mb-6 text-sm font-semibold uppercase">Follow us</h2>
+              <ul className="font-medium text-white">
                 <li className="mb-4">
                   <Link
                     href={`https://www.facebook.com/${facebookProfileId}`}
@@ -85,8 +85,8 @@ export default function Footer({
               </ul>
             </div>
             <div>
-              <h2 className="mb-6 text-sm font-semibold text-yellow uppercase">Contact Us</h2>
-              <ul className="text-white font-medium">
+              <h2 className="text-yellow mb-6 text-sm font-semibold uppercase">Contact Us</h2>
+              <ul className="font-medium text-white">
                 <li className="mb-4">
                   <Link href={`tel:${phoneNumber}`} className="hover:underline" rel="noopener noreferrer">
                     {phoneNumberDisplayAs}
@@ -106,7 +106,7 @@ export default function Footer({
             </div>
           </div>
         </div>
-        <hr className="my-6 border-default sm:mx-auto lg:my-8" />
+        <hr className="border-default my-6 sm:mx-auto lg:my-8" />
         <div className="sm:flex sm:items-center sm:justify-between">
           <span className="text-sm text-white sm:text-center">
             © 2026{' '}
@@ -115,18 +115,18 @@ export default function Footer({
             </Link>
             . All Rights Reserved.
           </span>
-          <span className="text-sm text-white sm:text-center inline-block">
+          <span className="inline-block text-sm text-white sm:text-center">
             Registered company{' '}
             <Link href="https://find-and-update.company-information.service.gov.uk/company/16305356">16305356</Link>.
           </span>
-          <div className="flex mt-4 sm:justify-center sm:mt-0">
+          <div className="mt-4 flex sm:mt-0 sm:justify-center">
             <Link
               href={`https://www.facebook.com/${facebookProfileId}`}
               className="text-white hover:text-white"
               rel="noopener noreferrer"
             >
               <svg
-                className="w-5 h-5"
+                className="h-5 w-5"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -144,11 +144,11 @@ export default function Footer({
             </Link>
             <Link
               href={`https://x.com/${xProfileId}`}
-              className="text-white hover:text-white ms-5"
+              className="ms-5 text-white hover:text-white"
               rel="noopener noreferrer"
             >
               <svg
-                className="w-5 h-5"
+                className="h-5 w-5"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -162,11 +162,11 @@ export default function Footer({
             </Link>
             <Link
               href={`https://www.google.com/maps/place/${googleReviewsId}`}
-              className="text-white hover:text-white ms-5"
+              className="ms-5 text-white hover:text-white"
               rel="noopener noreferrer"
             >
               <svg
-                className="w-5 h-5"
+                className="h-5 w-5"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
@@ -178,17 +178,17 @@ export default function Footer({
               </svg>
               <span className="sr-only">Google reviews</span>
             </Link>
-            <Link href={`mailto:${email}`} className="text-white hover:text-white ms-5" rel="noopener noreferrer">
+            <Link href={`mailto:${email}`} className="ms-5 text-white hover:text-white" rel="noopener noreferrer">
               <Mail size={20} />
               <span className="sr-only">Email</span>
             </Link>
-            <Link href={`tel:${phoneNumber}`} className="text-white hover:text-white ms-5" rel="noopener noreferrer">
+            <Link href={`tel:${phoneNumber}`} className="ms-5 text-white hover:text-white" rel="noopener noreferrer">
               <Phone size={18} />
               <span className="sr-only">Phone</span>
             </Link>
             <Link
               href={`https://wa.me/${phoneNumber}`}
-              className="text-white hover:text-white ms-5"
+              className="ms-5 text-white hover:text-white"
               rel="noopener noreferrer"
             >
               <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

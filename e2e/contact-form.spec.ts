@@ -50,23 +50,23 @@ async function fillRequiredFields(page: Page, overrides: Partial<Record<string, 
 
 /** Mock the Web3Forms endpoint and return a success response. */
 function mockSuccess(page: Page) {
-  return page.route(WEB3FORMS_URL, route =>
+  return page.route(WEB3FORMS_URL, (route) =>
     route.fulfill({
       status: 200,
       contentType: 'application/json',
       body: JSON.stringify({ success: true }),
-    }),
+    })
   );
 }
 
 /** Mock the Web3Forms endpoint and return a non-success response. */
 function mockFailure(page: Page) {
-  return page.route(WEB3FORMS_URL, route =>
+  return page.route(WEB3FORMS_URL, (route) =>
     route.fulfill({
       status: 200,
       contentType: 'application/json',
       body: JSON.stringify({ success: false, message: 'Invalid access key' }),
-    }),
+    })
   );
 }
 
@@ -123,9 +123,12 @@ test.describe('Contact form', () => {
   test('blocks submission when no radio option is selected for a group', async ({ page }) => {
     await fillRequiredFields(page);
     // Uncheck the first radio group programmatically (cannot uncheck a radio via UI).
-    await page.locator('input[name="vehicle_rolls"]').nth(0).evaluate(el => {
-      (el as HTMLInputElement).checked = false;
-    });
+    await page
+      .locator('input[name="vehicle_rolls"]')
+      .nth(0)
+      .evaluate((el) => {
+        (el as HTMLInputElement).checked = false;
+      });
     await page.getByRole('button', { name: 'Request quote' }).click();
     await expect(page.locator('input[name="vehicle_rolls"]').nth(0)).toBeFocused();
   });
@@ -185,8 +188,8 @@ test.describe('Contact form', () => {
   test('disables the button and shows "Sending…" while the request is in flight', async ({ page }) => {
     // Hold the route open until we have checked the loading state.
     let releaseRoute!: () => void;
-    await page.route(WEB3FORMS_URL, async route => {
-      await new Promise<void>(resolve => (releaseRoute = resolve));
+    await page.route(WEB3FORMS_URL, async (route) => {
+      await new Promise<void>((resolve) => (releaseRoute = resolve));
       await route.fulfill({
         status: 200,
         contentType: 'application/json',
@@ -207,7 +210,7 @@ test.describe('Contact form', () => {
 
   test('sends the correct JSON payload, including the access key', async ({ page }) => {
     let requestBody: Record<string, unknown> = {};
-    await page.route(WEB3FORMS_URL, async route => {
+    await page.route(WEB3FORMS_URL, async (route) => {
       requestBody = JSON.parse(route.request().postData() ?? '{}');
       await route.fulfill({
         status: 200,
@@ -240,7 +243,7 @@ test.describe('Contact form', () => {
     await page.getByRole('button', { name: 'Request quote' }).click();
 
     await expect(toast(page)).toBeVisible();
-    await expect(toast(page)).toContainText("Your quote request has been sent");
+    await expect(toast(page)).toContainText('Your quote request has been sent');
 
     // All text fields should be cleared after the reset.
     await expect(page.getByLabel('First name')).toHaveValue('');
@@ -258,7 +261,7 @@ test.describe('Contact form', () => {
   });
 
   test('shows an error toast on a network failure', async ({ page }) => {
-    await page.route(WEB3FORMS_URL, route => route.abort('failed'));
+    await page.route(WEB3FORMS_URL, (route) => route.abort('failed'));
     await fillRequiredFields(page);
     await page.getByRole('button', { name: 'Request quote' }).click();
 
@@ -284,7 +287,7 @@ test.describe('Contact form', () => {
 
   test('includes the message field in the payload when filled', async ({ page }) => {
     let requestBody: Record<string, unknown> = {};
-    await page.route(WEB3FORMS_URL, async route => {
+    await page.route(WEB3FORMS_URL, async (route) => {
       requestBody = JSON.parse(route.request().postData() ?? '{}');
       await route.fulfill({
         status: 200,
@@ -303,7 +306,7 @@ test.describe('Contact form', () => {
 
   test('omits the message field from the payload when left empty', async ({ page }) => {
     let requestBody: Record<string, unknown> = {};
-    await page.route(WEB3FORMS_URL, async route => {
+    await page.route(WEB3FORMS_URL, async (route) => {
       requestBody = JSON.parse(route.request().postData() ?? '{}');
       await route.fulfill({
         status: 200,
@@ -323,7 +326,7 @@ test.describe('Contact form', () => {
 
   test('sends "No" in the payload when the No radio is selected', async ({ page }) => {
     let requestBody: Record<string, unknown> = {};
-    await page.route(WEB3FORMS_URL, async route => {
+    await page.route(WEB3FORMS_URL, async (route) => {
       requestBody = JSON.parse(route.request().postData() ?? '{}');
       await route.fulfill({
         status: 200,

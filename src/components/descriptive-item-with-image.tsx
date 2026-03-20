@@ -11,13 +11,13 @@ export function DescriptiveItemWithImage({ item }: { item: ItemWithIconAndPictur
   return (
     <>
       {/* Card */}
-      <div className="group flex justify-between gap-y-6 gap-x-4 size-full hover:bg-muted-hover focus:outline-hidden focus:bg-muted-focus rounded-lg p-5">
+      <div className="group hover:bg-muted-hover focus:bg-muted-focus flex size-full justify-between gap-x-4 gap-y-6 rounded-lg p-5 focus:outline-hidden">
         <Icon className="size-8 shrink-0" />
         <div className="flex flex-col">
-          <h3 className="block font-normal text-foreground">{item.name}</h3>
-          <p className="font-thin text-muted-foreground-2">{item.description}</p>
+          <h3 className="text-foreground block font-normal">{item.name}</h3>
+          <p className="text-muted-foreground-2 font-thin">{item.description}</p>
           <Image
-            className="mt-2 max-w-full rounded-base grow-2"
+            className="rounded-base mt-2 max-w-full grow-2"
             width={item.picture.width}
             height={item.picture.height}
             src={`${basePath}${item.picture.filePath1}`}
