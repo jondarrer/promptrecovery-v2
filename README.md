@@ -65,6 +65,15 @@ Runtime configuration is centralised in `src/app/config.ts`, which reads from en
 | `GOOGLE_TAG_MANAGER_ID` | GTM container ID (format: `GTM-XXXXXXX`) | [tagmanager.google.com](https://tagmanager.google.com/) |
 | `GOOGLE_ANALYTICS_ID` | GA4 measurement ID (format: `G-XXXXXXXXXX`) | [analytics.google.com](https://analytics.google.com/) |
 
+### Script-only variables (local use, not needed in CI)
+
+| Variable | Description | Where to get it |
+| --- | --- | --- |
+| `GOOGLE_PLACE_ID` | Your Google Business place ID — used by `fetch-reviews` to identify which business to fetch | [Find your Place ID](https://developers.google.com/maps/documentation/places/web-service/place-id) |
+| `GOOGLE_MAPS_API_KEY` | Google Maps API key with **Places API (New)** enabled | [Google Cloud Console](https://console.cloud.google.com/) → APIs & Services → Credentials |
+
+These two are only read by `scripts/fetch-google-reviews.mjs` and are never injected into the Next.js build.
+
 ### Local development
 
 Copy the example file and fill in your values:
@@ -381,6 +390,57 @@ const accessKey = 'your-access-key-here';
 On submit, the form POSTs a JSON body containing `access_key` and all form field values. A `Toast` notification confirms success or failure. On success, the form resets.
 
 > The access key is a public identifier (not a secret) — it is safe to commit and visible in the browser.
+
+---
+
+## Google Reviews — `fetch-reviews`
+
+Google reviews displayed on the homepage are stored as static JSON in `src/app/data/google-reviews.json`. They are fetched on demand (not at build time) using a local script, then committed so the static site can include them without a server.
+
+### Running the script
+
+```bash
+npm run fetch-reviews
+```
+
+This calls `scripts/fetch-google-reviews.mjs`, which:
+
+1. Reads `GOOGLE_PLACE_ID` and `GOOGLE_MAPS_API_KEY` from `.env`.
+2. Calls the **Google Places API (New)** to fetch the business's reviews and aggregate rating.
+3. Filters to reviews with 4★ or higher.
+4. Writes the result to `src/app/data/google-reviews.json`.
+
+The output shape matches the `GoogleReviews` type in `src/types.ts`:
+
+```json
+{
+  "displayName": "Prompt Recovery",
+  "rating": 5.0,
+  "userRatingCount": 42,
+  "reviewsUrl": "https://maps.google.com/...",
+  "reviews": [
+    {
+      "rating": 5,
+      "text": "...",
+      "publishTime": "2024-11-01T10:00:00Z",
+      "when": "3 months ago",
+      "author": "Jane Smith",
+      "authorUrl": "https://...",
+      "authorPhoto": "https://..."
+    }
+  ]
+}
+```
+
+### Setup
+
+Before running the script, add the two variables to your `.env` file (see [Script-only variables](#script-only-variables-local-use-not-needed-in-ci) above).
+
+You will also need a Google Cloud project with the **Places API (New)** enabled, and an API key restricted to that API. The key is only used locally and is never exposed in the browser or committed to the repository.
+
+### Keeping reviews up to date
+
+Run `npm run fetch-reviews` whenever you want to pull in new reviews, then commit the updated `src/app/data/google-reviews.json`. The next deployment will include the latest data automatically.
 
 ---
 
