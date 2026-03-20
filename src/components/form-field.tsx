@@ -30,7 +30,7 @@ export function FormField({
         title={title}
         required
       />
-      <label htmlFor={name} className={labelClass}>
+      <label htmlFor={id} className={labelClass}>
         {label}
       </label>
     </div>

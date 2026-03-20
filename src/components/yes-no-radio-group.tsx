@@ -8,12 +8,12 @@ export function YesNoRadioGroup({ name, label }: { name: string; label: string }
     <>
       <p className="text-normal my-4">{label}</p>
       <div className="flex items-start mb-5">
-        <label htmlFor={`${name}_yes}`} className={radioLabelClass}>
-          <input name={name} id={`${name}_yes}`} type="radio" value="Yes" className={radioClass} required />
+        <label htmlFor={`${name}_yes`} className={radioLabelClass}>
+          <input name={name} id={`${name}_yes`} type="radio" value="Yes" className={radioClass} required />
           <p className={radioTextClass}>Yes</p>
         </label>
-        <label htmlFor={`${name}_no}`} className={`${radioLabelClass} ml-16`}>
-          <input name={name} id={`${name}_no}`} type="radio" value="No" className={radioClass} required />
+        <label htmlFor={`${name}_no`} className={`${radioLabelClass} ml-16`}>
+          <input name={name} id={`${name}_no`} type="radio" value="No" className={radioClass} required />
           <p className={radioTextClass}>No</p>
         </label>
       </div>
