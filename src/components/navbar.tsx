@@ -6,12 +6,13 @@
 // 2. The Flowbite mobile-menu toggle (data-collapse-toggle) needs JS to run,
 //    so this component needs to be in the browser bundle anyway.
 
-import { useEffect, useRef } from 'react';
-import { usePathname } from 'next/navigation';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useCallback, useEffect, useRef } from 'react';
 
 import { basePath } from '@/app/base-path';
+
 import { Menu } from './icons';
 
 const pages: Record<string, string> = {
@@ -27,13 +28,13 @@ export default function Navbar({ children, phoneNumber }: { children?: React.Rea
 
   const toggleButton = () => document.querySelector('[data-collapse-toggle="navbar-sticky"]') as HTMLElement | null;
 
-  const closeMenu = (returnFocus = false) => {
+  const closeMenu = useCallback((returnFocus = false) => {
     const menu = document.getElementById('navbar-sticky');
     if (menu && !menu.classList.contains('hidden')) {
       toggleButton()?.click();
       if (returnFocus) toggleButton()?.focus();
     }
-  };
+  }, []);
 
   useEffect(() => {
     const handleOutsideClick = (e: MouseEvent) => {
@@ -48,7 +49,7 @@ export default function Navbar({ children, phoneNumber }: { children?: React.Rea
       document.removeEventListener('mousedown', handleOutsideClick);
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  }, [closeMenu]);
 
   useEffect(() => {
     // Initialise Flowbite's collapse component so the mobile hamburger menu

@@ -1,6 +1,6 @@
-import { CircleHelp } from './icons';
-
 import { Faq } from '@/types';
+
+import { CircleHelp } from './icons';
 
 export function FaqItem({ faq }: { faq: Faq }) {
   return (

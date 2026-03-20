@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { DescriptiveItemWithImage } from '@/components/descriptive-item-with-image';
 import { PageHeader } from '@/components/page-header';
 
-import { pictures, services, seo } from '../data/index';
+import { pictures, seo,services } from '../data/index';
 
 export const metadata: Metadata = {
   title: 'Services',

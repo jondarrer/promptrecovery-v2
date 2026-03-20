@@ -1,7 +1,7 @@
+import { GoogleReview } from '@/types';
+
 import { GoogleUserProfile } from './google-user-profile';
 import { Rating } from './rating';
-
-import { GoogleReview } from '@/types';
 
 export function ReviewCardV2({ review }: { review: GoogleReview }) {
   return (

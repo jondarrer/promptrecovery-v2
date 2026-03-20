@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 
 import { FaqItem } from '@/components/faq-item';
 import { PageHeader } from '@/components/page-header';
+
 import { faqs, seo } from '../data/index';
 
 export const metadata: Metadata = {

@@ -17,8 +17,8 @@
  * to strict equality (=== rather than ==). Docs:
  *   https://nodejs.org/api/assert.html
  */
-import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
+import { describe, it } from 'node:test';
 
 // ---------------------------------------------------------------------------
 // Replace the examples below with real unit tests as you build the site.

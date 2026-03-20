@@ -1,4 +1,5 @@
 import { ItemWithIcon } from '@/types';
+
 import * as Icons from './icons';
 
 export function ServiceItem({ service }: { service: ItemWithIcon }) {

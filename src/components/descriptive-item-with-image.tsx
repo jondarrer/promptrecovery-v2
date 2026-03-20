@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
-import { ItemWithIconAndPicture } from '@/types';
 import { basePath } from '@/app/base-path';
+import { ItemWithIconAndPicture } from '@/types';
 
 import * as Icons from './icons';
 

@@ -1,9 +1,9 @@
 import js from '@eslint/js';
 import nextVitals from 'eslint-config-next/core-web-vitals';
-import tseslint from 'typescript-eslint';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
+import tseslint from 'typescript-eslint';
 
-export default [
+const config = [
   js.configs.recommended,
   ...tseslint.configs.recommended,
   ...nextVitals,
@@ -20,3 +20,5 @@ export default [
     ignores: ['.next/**', 'out/**', 'node_modules/**'],
   },
 ];
+
+export default config;

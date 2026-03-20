@@ -1,17 +1,16 @@
-import type { Metadata } from 'next';
-import Script from 'next/script';
-import { Inter } from 'next/font/google';
-import { GoogleAnalytics } from '@next/third-parties/google';
+import './globals.css';
 
-import Navbar from '@/components/navbar';
+import { GoogleAnalytics } from '@next/third-parties/google';
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import Script from 'next/script';
+
 import Footer from '@/components/footer';
+import Navbar from '@/components/navbar';
 import { Rating } from '@/components/rating';
 
-import { googleReviews, seo } from './data/index';
-
 import config from './config';
-
-import './globals.css';
+import { googleReviews, seo } from './data/index';
 
 // The `metadata` export is the Next.js App Router way to set <head> tags.
 // This root layout's metadata acts as the site-wide default; individual pages

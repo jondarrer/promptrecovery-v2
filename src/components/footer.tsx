@@ -1,7 +1,8 @@
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { basePath } from '@/app/base-path';
+
 import { Mail, Phone } from './icons';
 
 export default function Footer({

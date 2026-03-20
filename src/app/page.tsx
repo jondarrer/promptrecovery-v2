@@ -1,19 +1,18 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { Carousel } from '@/components/carousel';
+import { ContactForm } from '@/components/contact-form';
+import { GoogleMap } from '@/components/google-map';
 import { ReviewCardV2 } from '@/components/review-card-v2';
 import { Section } from '@/components/section';
 import { SectionHeading } from '@/components/section-heading';
-import { ContactForm } from '@/components/contact-form';
-import { GoogleMap } from '@/components/google-map';
 import { ServiceItem } from '@/components/service-item';
-
-import { googleReviews, services, reasonsToChooseNick, seo } from './data/index';
 
 import { basePath } from './base-path';
 import config from './config';
+import { googleReviews, reasonsToChooseNick, seo, services } from './data/index';
 
 // Page-level metadata overrides the defaults set in layout.tsx.
 // This page's browser tab will read: "Home | Prompt Recovery"
@@ -80,7 +79,7 @@ export default function HomePage() {
               <SectionHeading sectionName="About" />
               <p className="text-xl font-light">
                 Prompt Recovery Ltd is a locally trusted roadside recovery company based in Watford. With experience and
-                a commitment to fast, reliable service, we're the first call you make when you're stuck.
+                a commitment to fast, reliable service, we&apos;re the first call you make when you&apos;re stuck.
               </p>
               <p className="mt-8">
                 <Link
