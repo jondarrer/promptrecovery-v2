@@ -48,7 +48,7 @@ export default function HomePage() {
                 </p>
                 <p className="pt-4">
                   <Link
-                    href={`tel://${seo.phone}`}
+                    href={`tel:${seo.phone}`}
                     className="inline text-white font-normal bg-brand hover:bg-brand-light box-border border border-transparent focus:ring-2 focus:ring-yellow shadow-xs leading-5 rounded-base px-3 py-3 focus:outline-none text-md"
                   >
                     Call Now

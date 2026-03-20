@@ -88,7 +88,7 @@ export default function Footer({
               <h2 className="mb-6 text-sm font-semibold text-yellow uppercase">Contact Us</h2>
               <ul className="text-white font-medium">
                 <li className="mb-4">
-                  <Link href={`tel://${phoneNumber}`} className="hover:underline" target="_blank">
+                  <Link href={`tel:${phoneNumber}`} className="hover:underline" target="_blank">
                     {phoneNumberDisplayAs}
                   </Link>
                 </li>
@@ -98,7 +98,7 @@ export default function Footer({
                   </Link>
                 </li>
                 <li>
-                  <Link href={`mailto://${email}`} className="hover:underline" target="_blank">
+                  <Link href={`mailto:${email}`} className="hover:underline" target="_blank">
                     {email}
                   </Link>
                 </li>
@@ -174,11 +174,11 @@ export default function Footer({
               </svg>
               <span className="sr-only">Google reviews</span>
             </Link>
-            <Link href={`mailto://${email}`} className="text-white hover:text-white ms-5" target="_blank">
+            <Link href={`mailto:${email}`} className="text-white hover:text-white ms-5" target="_blank">
               <Mail size={20} />
               <span className="sr-only">Email</span>
             </Link>
-            <Link href={`tel://${phoneNumber}`} className="text-white hover:text-white ms-5" target="_blank">
+            <Link href={`tel:${phoneNumber}`} className="text-white hover:text-white ms-5" target="_blank">
               <Phone size={18} />
               <span className="sr-only">Phone</span>
             </Link>
