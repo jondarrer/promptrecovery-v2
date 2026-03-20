@@ -63,13 +63,13 @@ export default function Footer({
                   <Link
                     href={`https://www.facebook.com/${facebookProfileId}`}
                     className="hover:underline"
-                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     Facebook
                   </Link>
                 </li>
                 <li className="mb-4">
-                  <Link href={`https://x.com/${xProfileId}`} className="hover:underline" target="_blank">
+                  <Link href={`https://x.com/${xProfileId}`} className="hover:underline" rel="noopener noreferrer">
                     X
                   </Link>
                 </li>
@@ -77,7 +77,7 @@ export default function Footer({
                   <Link
                     href={`https://www.google.com/maps/place/${googleReviewsId}`}
                     className="hover:underline"
-                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     Google Reviews
                   </Link>
@@ -88,17 +88,17 @@ export default function Footer({
               <h2 className="mb-6 text-sm font-semibold text-yellow uppercase">Contact Us</h2>
               <ul className="text-white font-medium">
                 <li className="mb-4">
-                  <Link href={`tel:${phoneNumber}`} className="hover:underline" target="_blank">
+                  <Link href={`tel:${phoneNumber}`} className="hover:underline" rel="noopener noreferrer">
                     {phoneNumberDisplayAs}
                   </Link>
                 </li>
                 <li className="mb-4">
-                  <Link href={`https://wa.me/${phoneNumber}`} className="hover:underline" target="_blank">
+                  <Link href={`https://wa.me/${phoneNumber}`} className="hover:underline" rel="noopener noreferrer">
                     WhatsApp
                   </Link>
                 </li>
                 <li>
-                  <Link href={`mailto:${email}`} className="hover:underline" target="_blank">
+                  <Link href={`mailto:${email}`} className="hover:underline" rel="noopener noreferrer">
                     {email}
                   </Link>
                 </li>
@@ -123,7 +123,7 @@ export default function Footer({
             <Link
               href={`https://www.facebook.com/${facebookProfileId}`}
               className="text-white hover:text-white"
-              target="_blank"
+              rel="noopener noreferrer"
             >
               <svg
                 className="w-5 h-5"
@@ -142,7 +142,11 @@ export default function Footer({
               </svg>
               <span className="sr-only">Facebook page</span>
             </Link>
-            <Link href={`https://x.com/${xProfileId}`} className="text-white hover:text-white ms-5" target="_blank">
+            <Link
+              href={`https://x.com/${xProfileId}`}
+              className="text-white hover:text-white ms-5"
+              rel="noopener noreferrer"
+            >
               <svg
                 className="w-5 h-5"
                 aria-hidden="true"
@@ -159,7 +163,7 @@ export default function Footer({
             <Link
               href={`https://www.google.com/maps/place/${googleReviewsId}`}
               className="text-white hover:text-white ms-5"
-              target="_blank"
+              rel="noopener noreferrer"
             >
               <svg
                 className="w-5 h-5"
@@ -174,15 +178,19 @@ export default function Footer({
               </svg>
               <span className="sr-only">Google reviews</span>
             </Link>
-            <Link href={`mailto:${email}`} className="text-white hover:text-white ms-5" target="_blank">
+            <Link href={`mailto:${email}`} className="text-white hover:text-white ms-5" rel="noopener noreferrer">
               <Mail size={20} />
               <span className="sr-only">Email</span>
             </Link>
-            <Link href={`tel:${phoneNumber}`} className="text-white hover:text-white ms-5" target="_blank">
+            <Link href={`tel:${phoneNumber}`} className="text-white hover:text-white ms-5" rel="noopener noreferrer">
               <Phone size={18} />
               <span className="sr-only">Phone</span>
             </Link>
-            <Link href={`https://wa.me/${phoneNumber}`} className="text-white hover:text-white ms-5" target="_blank">
+            <Link
+              href={`https://wa.me/${phoneNumber}`}
+              className="text-white hover:text-white ms-5"
+              rel="noopener noreferrer"
+            >
               <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M6.014 8.00613C6.12827 7.1024 7.30277 5.87414 8.23488 6.01043L8.23339 6.00894C9.14051 6.18132 9.85859 7.74261 10.2635 8.44465C10.5504 8.95402 10.3641 9.4701 10.0965 9.68787C9.7355 9.97883 9.17099 10.3803 9.28943 10.7834C9.5 11.5 12 14 13.2296 14.7107C13.695 14.9797 14.0325 14.2702 14.3207 13.9067C14.5301 13.6271 15.0466 13.46 15.5548 13.736C16.3138 14.178 17.0288 14.6917 17.69 15.27C18.0202 15.546 18.0977 15.9539 17.8689 16.385C17.4659 17.1443 16.3003 18.1456 15.4542 17.9421C13.9764 17.5868 8 15.27 6.08033 8.55801C5.97237 8.24048 5.99955 8.12044 6.014 8.00613Z"
