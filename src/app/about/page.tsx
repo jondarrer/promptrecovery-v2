@@ -21,7 +21,7 @@ export default function AboutPage() {
   return (
     <>
       {/* About */}
-      <div className="max-w-340 px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto mt-24">
+      <div className="max-w-340 px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto pt-42 lg:pt-42">
         <PageHeader
           title="Meet Prompt Recovery — Watford's trusted recovery specialist"
           subtitle="Prompt Recovery Ltd was built on one mission: to provide fast, friendly and reliable roadside recovery across Watford and nearby areas. Get to know the person behind the wheel and what drives our services."

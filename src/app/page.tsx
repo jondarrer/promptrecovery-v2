@@ -43,8 +43,16 @@ export default function HomePage() {
                 <h2 className="mb-4 font-normal text-foreground text-2xl lg:text-3xl">
                   Serving Watford and the surrounding areas
                 </h2>
-                <p className="text-muted-foreground-2 text-xl font-light">
+                <p className="mb-4 text-muted-foreground-2 text-xl font-light">
                   Fast, friendly and affordable help for vehicles under 4 tonnes
+                </p>
+                <p className="pt-4">
+                  <Link
+                    href={`tel://${seo.phone}`}
+                    className="hidden xs:inline text-white font-normal bg-brand hover:bg-brand-light box-border border border-transparent focus:ring-2 focus:ring-yellow shadow-xs leading-5 rounded-base px-3 py-3 focus:outline-none text-md"
+                  >
+                    Call Now
+                  </Link>
                 </p>
               </div>
               {/*-- End Title --*/}

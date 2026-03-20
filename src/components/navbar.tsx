@@ -111,7 +111,7 @@ export default function Navbar({ children, phoneNumber }: { children?: React.Rea
             href={`tel://${phoneNumber}`}
             className="hidden xs:inline text-white font-normal bg-brand hover:bg-brand-light box-border border border-transparent focus:ring-2 focus:ring-yellow shadow-xs leading-5 rounded-base px-3 py-3 focus:outline-none text-xl"
           >
-            Call
+            Call Now
           </Link>
           <Link
             href={`https://wa.me/${phoneNumber}`}

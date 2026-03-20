@@ -38,6 +38,14 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * @type {Viewport}
+ */
+export const viewport = {
+  themeColor: '#0a192f',
+  colorScheme: 'light',
+};
+
 const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': ['LocalBusiness', 'AutomotiveBusiness'],
