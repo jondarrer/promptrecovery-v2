@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 
-import { ServiceItem } from '@/components/service-item';
+import { DescriptiveItemWithImage } from '@/components/descriptive-item-with-image';
 import { PageHeader } from '@/components/page-header';
-import { services, seo } from '../data/index';
+
+import { pictures, services, seo } from '../data/index';
 
 export const metadata: Metadata = {
   title: 'Services',
@@ -23,9 +24,10 @@ export default function ServicesPage() {
         />
 
         <div className="max-w-7xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 items-center gap-6">
-          {services.map((service) => (
-            <ServiceItem key={service.name} service={service} />
-          ))}
+          {services.map((service) => {
+            const picture = pictures[service.pictureIndex];
+            return <DescriptiveItemWithImage key={service.name} item={{ ...service, picture }} />;
+          })}
         </div>
       </div>
     </>
