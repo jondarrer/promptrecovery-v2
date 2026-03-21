@@ -21,13 +21,21 @@
 @plugin 'flowbite/plugin';
 
 /*
-  Point Tailwind's scanner directly at the built Flowbite bundle so it finds
-  all class names Flowbite's JS applies dynamically at runtime (e.g. the
-  translate-x-*, opacity-*, and transition classes used during carousel
-  transitions). Without this, those classes get pruned from the CSS output
-  and carousel/modal animations silently break.
+  Safelist the CSS classes Flowbite's carousel applies dynamically via
+  classList.add/remove at runtime. Tailwind's scanner never sees these in
+  source files, so without this they are pruned from the output.
+
+  Flowbite's _rotate() removes `hidden` from three items (left, middle,
+  right) and adds these classes to push the off-screen ones out of view:
+    - translate-x-0          the active (centre) slide
+    - -translate-x-full      the previous slide (off left)
+    -  translate-x-full      the next slide (off right)
+    - z-10 / z-20 / z-30    stacking order during the crossfade
+
+  @source inline() is Tailwind v4's built-in safelist mechanism — it
+  generates the listed utilities unconditionally, independent of scanning.
 */
-@source '../node_modules/flowbite/dist/flowbite.js';
+@source inline("translate-x-0 -translate-x-full translate-x-full z-10 z-20 z-30");
 
 /* Apply a consistent yellow focus ring to all footer links. */
 footer a:focus-visible {
