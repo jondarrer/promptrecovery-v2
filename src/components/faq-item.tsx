@@ -2,6 +2,13 @@ import { Faq } from '@/types';
 
 import { CircleHelp } from './icons';
 
+/**
+ * Renders a single FAQ entry as a question/answer pair with a help-circle icon
+ * aligned to the left of the question text.
+ *
+ * @param props.faq - FAQ data object containing `question` and `answer` strings.
+ * @see https://preline.co/examples/faq-sections.html#faq-simple-with-divider-and-icon
+ */
 export function FaqItem({ faq }: { faq: Faq }) {
   return (
     <div className="py-8 first:pt-0 last:pb-0">

@@ -22,6 +22,25 @@ const pages: Record<string, string> = {
   FAQs: '/faqs',
 };
 
+/**
+ * Fixed top navigation bar displaying the site logo, page links, phone and
+ * WhatsApp CTAs, and a hamburger menu on mobile. The active page link is
+ * determined via `usePathname()`, which Next.js also evaluates during SSR so
+ * the correct active state is present in the initial HTML (no flash on load).
+ *
+ * Flowbite's collapse component is initialised here (rather than in a separate
+ * component) because the Navbar already has to be a Client Component for
+ * `usePathname()`. It re-initialises on every route change to re-wire the
+ * mobile menu toggle after client-side navigation.
+ *
+ * The mobile menu closes automatically on outside click, Escape key press, or
+ * any nav link click.
+ *
+ * @param props.children - Optional content rendered in a secondary bar beneath
+ *   the main nav row (e.g. the aggregate Google rating strip).
+ * @param props.phoneNumber - E.164-formatted phone number used for `tel:` and `wa.me` links.
+ * @see https://flowbite.com/docs/components/navbar/#sticky-navbar
+ */
 export default function Navbar({ children, phoneNumber }: { children?: React.ReactNode; phoneNumber: string }) {
   const pathname = usePathname();
   const navRef = useRef<HTMLElement>(null);

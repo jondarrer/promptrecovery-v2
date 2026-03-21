@@ -1,3 +1,13 @@
+/**
+ * Renders a row of filled and empty star SVG icons to represent a numeric
+ * rating. Stars at indices up to and including `rating` are filled; the
+ * remainder are greyed out.
+ *
+ * @param props.rating - The numeric rating value (e.g. `4.5`).
+ * @param props.outOf - Total number of stars to render. Defaults to `5`.
+ * @param props.size - Width and height of each star SVG in pixels. Defaults to `24`.
+ * @see https://flowbite.com/docs/components/rating/#default-rating
+ */
 export function Rating({ rating, outOf = 5, size = 24 }: { rating: number; outOf?: number; size?: number }) {
   const stars: React.ReactNode[] = [];
 

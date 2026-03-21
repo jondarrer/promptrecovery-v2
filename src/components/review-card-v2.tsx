@@ -3,6 +3,15 @@ import { GoogleReview } from '@/types';
 import { GoogleUserProfile } from './google-user-profile';
 import { Rating } from './rating';
 
+/**
+ * Displays a single Google review as a centred testimonial card, including
+ * the reviewer's profile (via {@link GoogleUserProfile}), their star rating
+ * and relative review date, and the review text with a decorative opening
+ * quotation mark SVG.
+ *
+ * @param props.review - Google review data object containing text, rating, author details, and date.
+ * @see https://preline.co/examples/testimonials.html#testimonials-simple-center-aligned-with-logo
+ */
 export function ReviewCardV2({ review }: { review: GoogleReview }) {
   return (
     <>

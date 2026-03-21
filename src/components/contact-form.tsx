@@ -8,6 +8,16 @@ import { YesNoRadioGroup } from './yes-no-radio-group';
 
 type Status = 'idle' | 'loading' | 'success' | 'error';
 
+/**
+ * Quote request form that submits to Web3Forms without requiring a backend
+ * server, making it compatible with a static export. Displays a {@link Toast}
+ * notification on success or failure. The form resets automatically after a
+ * successful submission.
+ *
+ * @param props.action - The Web3Forms API endpoint URL.
+ * @param props.accessKey - Web3Forms access key that routes submissions to the configured email address.
+ * @see https://flowbite.com/docs/components/forms/#floating-labels
+ */
 export function ContactForm({ action, accessKey }: { action: string; accessKey: string }) {
   const [status, setStatus] = useState<Status>('idle');
 

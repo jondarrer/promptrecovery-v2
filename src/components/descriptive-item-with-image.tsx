@@ -5,6 +5,14 @@ import { ItemWithIconAndPicture } from '@/types';
 
 import * as Icons from './icons';
 
+/**
+ * Renders an icon, heading, description, and supporting image for a single
+ * item (e.g. a reason to choose the business). The icon is resolved
+ * dynamically from the {@link Icons} barrel using the string name stored in
+ * the data JSON.
+ *
+ * @param props.item - Item data including `name`, `description`, `icon` (Lucide icon name), and `picture` metadata.
+ */
 export function DescriptiveItemWithImage({ item }: { item: ItemWithIconAndPicture }) {
   const Icon = Icons[item.icon as keyof typeof Icons];
 

@@ -1,5 +1,20 @@
 import { Check, X } from './icons';
 
+/**
+ * Controlled notification banner displayed after a form submission. Renders a
+ * coloured icon badge, a message, and a close button. Visibility is managed
+ * externally via the `onClose` callback.
+ *
+ * Dismissal is handled via React state (the `onClose` prop) rather than
+ * Flowbite's `data-dismiss-target` mechanism, which requires the target element
+ * to already be in the DOM when Flowbite initialises — not guaranteed for
+ * dynamically rendered toasts.
+ *
+ * @param props.type - Colour scheme: `'success'`, `'danger'`, or `'warning'`.
+ * @param props.message - Notification text displayed to the user.
+ * @param props.onClose - Callback invoked when the user clicks the close button.
+ * @see https://flowbite.com/docs/components/toast/#colors
+ */
 export function Toast({
   type,
   message,

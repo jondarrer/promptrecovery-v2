@@ -4,6 +4,14 @@ import React from 'react';
 
 import { GoogleUser } from '@/types';
 
+/**
+ * Renders a Google reviewer's avatar and display name as a linked profile.
+ * Accepts an optional slot for additional content (e.g. a star rating and
+ * relative review date) rendered beneath the author's name.
+ *
+ * @param props.userProfile - Reviewer profile data: `author`, `authorPhoto`, and `authorUrl`.
+ * @param props.children - Optional content rendered below the author's name inside the link.
+ */
 export function GoogleUserProfile({ userProfile, children }: { userProfile: GoogleUser; children?: React.ReactNode }) {
   return (
     <Link

@@ -4,6 +4,22 @@ import React, { useEffect, useRef } from 'react';
 
 import { ChevronLeft, ChevronRight } from './icons';
 
+/**
+ * Auto-advancing content carousel powered by Flowbite's `Carousel` class.
+ * Accepts any number of child elements as slides.
+ *
+ * Flowbite is loaded via a dynamic `import()` so it is never included in the
+ * server bundle. The carousel is initialised programmatically (rather than via
+ * `initFlowbite`) so a custom `interval` can be passed. Flowbite's `_rotate()`
+ * always keeps three slides visible simultaneously — active, previous, and next
+ * — pushing the off-screen ones out of view with `translate-x-full` /
+ * `-translate-x-full`. Those classes must be safelisted in `globals.css` via
+ * `@source inline()` or they will be purged by Tailwind.
+ *
+ * @param props.children - Slide content; each direct child becomes one slide.
+ * @param props.interval - Milliseconds between automatic slide transitions. Defaults to `10_000`.
+ * @see https://flowbite.com/docs/components/carousel/#default-slider
+ */
 export function Carousel({ children, interval = 10_000 }: { children: React.ReactNode; interval?: number }) {
   const ref = useRef<HTMLDivElement>(null);
 

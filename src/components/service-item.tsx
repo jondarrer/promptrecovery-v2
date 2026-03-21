@@ -2,6 +2,14 @@ import { ItemWithIcon } from '@/types';
 
 import * as Icons from './icons';
 
+/**
+ * Renders a single service or company-value card consisting of a Lucide icon,
+ * a title, and a short description. The icon is resolved dynamically from the
+ * {@link Icons} barrel using the string name stored in the data JSON.
+ *
+ * @param props.service - Service data object containing `name`, `description`, and `icon` (Lucide icon name as a string).
+ * @see https://preline.co/examples/icon-sections.html#icon-gray-bg-on-hover
+ */
 export function ServiceItem({ service }: { service: ItemWithIcon }) {
   const Icon = Icons[service.icon as keyof typeof Icons];
 

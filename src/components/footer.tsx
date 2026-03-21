@@ -5,6 +5,19 @@ import { basePath } from '@/app/base-path';
 
 import { Mail, Phone } from './icons';
 
+/**
+ * Site-wide footer containing page navigation links, social media links
+ * (Facebook, X, Google Reviews, WhatsApp, email, phone), and company
+ * registration information.
+ *
+ * @param props.facebookProfileId - Facebook profile/page ID appended to the Facebook URL.
+ * @param props.xProfileId - X (Twitter) handle appended to the X URL.
+ * @param props.googleReviewsId - Google Maps place ID used to link to the Google Reviews listing.
+ * @param props.phoneNumber - E.164-formatted phone number used for `tel:` and `wa.me` links.
+ * @param props.phoneNumberDisplayAs - Human-readable phone number displayed in the contact list.
+ * @param props.email - Email address used for the `mailto:` link.
+ * @see https://flowbite.com/docs/components/footer/#social-media-icons
+ */
 export default function Footer({
   facebookProfileId,
   xProfileId,

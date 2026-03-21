@@ -1,3 +1,13 @@
+/**
+ * Embeds the business location as a responsive Google Maps iframe. The embed
+ * URL is hardcoded to the Prompt Recovery address and requires no API key.
+ * `loading="lazy"` defers the iframe until it is near the viewport.
+ *
+ * If the map fails to load in development, try opening the page in an
+ * incognito window — ad blockers commonly block Google Maps iframes.
+ *
+ * @see https://developers.google.com/maps/documentation/embed/get-started
+ */
 export function GoogleMap() {
   return (
     <div className="google-map-container h-100 w-full">

@@ -1,3 +1,16 @@
+/**
+ * Reusable floating-label text input for use within a `<form>`. The label
+ * animates upward when the input is focused or filled. All fields are marked
+ * `required` by default.
+ *
+ * @param props.name - The `name` attribute on the `<input>` (used as the form data key on submission).
+ * @param props.id - The `id` attribute on the `<input>`, linked to the `<label>` via `htmlFor`.
+ * @param props.label - The floating label text.
+ * @param props.type - Input type. Defaults to `'text'`. Accepts `'text'`, `'tel'`, or `'email'`.
+ * @param props.pattern - Optional HTML validation pattern applied to the input.
+ * @param props.title - Optional tooltip shown when pattern validation fails.
+ * @see https://flowbite.com/docs/components/forms/#floating-labels
+ */
 export function FormField({
   name,
   id,
