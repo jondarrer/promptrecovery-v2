@@ -8,15 +8,14 @@ import { ServiceItem } from '@/components/service-item';
 
 import { basePath } from '../base-path';
 import { pictures, seo, values } from '../data/index';
+import { baseOpenGraph } from '../layout';
 
 export const metadata: Metadata = {
   title: 'About',
   alternates: { canonical: `${seo.url}/about/` },
   description:
     'Meet Nick — founder of Prompt Recovery Ltd, with 20+ years of professional driving experience. Trusted, local roadside recovery in Watford and nearby areas.',
-  openGraph: {
-    url: `${seo.url}/about`,
-  },
+  openGraph: { ...baseOpenGraph, url: `${seo.url}/about/` },
 };
 
 export default function AboutPage() {

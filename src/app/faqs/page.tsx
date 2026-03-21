@@ -4,15 +4,14 @@ import { FaqItem } from '@/components/faq-item';
 import { PageHeader } from '@/components/page-header';
 
 import { faqs, seo } from '../data/index';
+import { baseOpenGraph } from '../layout';
 
 export const metadata: Metadata = {
   title: 'FAQs',
   alternates: { canonical: `${seo.url}/faqs/` },
   description:
     'Got a question before booking? Find answers to the most common questions about our vehicle recovery services in Watford and surrounding areas.',
-  openGraph: {
-    url: `${seo.url}/faqs`,
-  },
+  openGraph: { ...baseOpenGraph, url: `${seo.url}/faqs/` },
 };
 
 const faqPageSchema = {

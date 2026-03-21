@@ -16,6 +16,20 @@ import { googleReviews, seo } from './data/index';
 // This root layout's metadata acts as the site-wide default; individual pages
 // can override any field by exporting their own `metadata` object.
 // See: https://nextjs.org/docs/app/api-reference/functions/generate-metadata
+/**
+ * Shared Open Graph fields for every page. Next.js does not inherit `openGraph`
+ * from parent layouts, so pages that set their own `openGraph` must spread this
+ * to preserve site-level fields (type, locale, siteName, images).
+ *
+ * @see https://nextjs.org/docs/app/api-reference/functions/generate-metadata#opengraph
+ */
+export const baseOpenGraph: Metadata['openGraph'] = {
+  type: 'website',
+  locale: 'en_GB',
+  siteName: seo.businessName,
+  images: [seo.ogImage],
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(seo.url),
   title: {
@@ -29,12 +43,7 @@ export const metadata: Metadata = {
   formatDetection: { telephone: true },
   icons: { icon: '/images/logo-128x128.png' },
   manifest: '/manifest.json',
-  openGraph: {
-    type: 'website',
-    locale: 'en_GB',
-    siteName: seo.businessName,
-    images: [seo.ogImage],
-  },
+  openGraph: baseOpenGraph,
   twitter: {
     card: 'summary_large_image',
     images: [seo.ogImage],

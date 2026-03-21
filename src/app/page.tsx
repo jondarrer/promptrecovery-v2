@@ -13,15 +13,15 @@ import { ServiceItem } from '@/components/service-item';
 import { basePath } from './base-path';
 import config from './config';
 import { googleReviews, reasonsToChooseNick, seo, services } from './data/index';
+import { baseOpenGraph } from './layout';
 
 // Page-level metadata overrides the defaults set in layout.tsx.
 // This page's browser tab will read: "Home | Prompt Recovery"
 export const metadata: Metadata = {
-  title: 'Home',
+  // Use absolute title (no template) so og:title is also descriptive
+  title: { absolute: 'Prompt Recovery | Roadside Recovery & Towing in Watford' },
   alternates: { canonical: `${seo.url}/` },
-  openGraph: {
-    url: seo.url,
-  },
+  openGraph: { ...baseOpenGraph, url: seo.url },
 };
 
 // This is the home page, rendered at the root path `/`.

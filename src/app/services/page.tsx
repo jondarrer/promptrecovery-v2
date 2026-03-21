@@ -4,15 +4,14 @@ import { DescriptiveItemWithImage } from '@/components/descriptive-item-with-ima
 import { PageHeader } from '@/components/page-header';
 
 import { pictures, seo, services } from '../data/index';
+import { baseOpenGraph } from '../layout';
 
 export const metadata: Metadata = {
   title: 'Services',
   alternates: { canonical: `${seo.url}/services/` },
   description:
     'Breakdown towing, motorway recovery, van recovery, stuck vehicle recovery, and more. Safe, fast, and affordable — serving Watford and surrounding areas.',
-  openGraph: {
-    url: `${seo.url}/services`,
-  },
+  openGraph: { ...baseOpenGraph, url: `${seo.url}/services/` },
 };
 
 export default function ServicesPage() {
