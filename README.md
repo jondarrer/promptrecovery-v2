@@ -540,6 +540,23 @@ CSS custom properties:
 
 Tailwind auto-detects source files from your project; no `content` globs to configure.
 
+### Google Fonts — `next/font/google`
+
+The site uses [Inter](https://fonts.google.com/specimen/Inter) loaded via `next/font/google` in `layout.tsx`:
+
+```ts
+import { Inter } from 'next/font/google';
+const inter = Inter({ subsets: ['latin'] });
+```
+
+`next/font/google` **self-hosts** the font files at build time — it downloads them from Google Fonts during `next build` and bundles them as static assets. At runtime, the browser loads the font from your own domain (or GitHub Pages), never from `fonts.googleapis.com`. This means:
+
+- No external DNS lookup or network round-trip for the font at page load
+- No Google Fonts cookie or request visible to the user — GDPR-friendly by default
+- No `<link rel="preconnect">` or `<link rel="stylesheet">` in `<head>` is needed; Next.js injects an optimised `<style>` block instead
+
+To change the font, swap the import and constructor call in `layout.tsx`. The [Next.js font docs](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) list all available Google Fonts and configuration options (weights, styles, variable fonts, CSS variable mode).
+
 ### `public/.nojekyll`
 
 An empty file that prevents GitHub Pages from running the Jekyll static site generator on your `out/` directory. Without
@@ -547,13 +564,48 @@ it, files and folders starting with `_` (which Next.js uses internally) would be
 
 ---
 
-## Linting
+## Linting & Formatting
+
+Two separate tools handle code quality:
+
+| Tool | Config file | Responsibility |
+| --- | --- | --- |
+| [ESLint](https://eslint.org/) | `eslint.config.mjs` | Code correctness, style rules, import order |
+| [Prettier](https://prettier.io/) | `.prettierrc` | Consistent code formatting, Tailwind class sorting |
+
+### ESLint
 
 ```bash
-npm run lint
+npm run lint        # report problems
+npm run lint:fix    # report and auto-fix where possible
 ```
 
-Uses Next.js's built-in ESLint configuration. Linting also runs as part of the build step.
+The flat config (`eslint.config.mjs`) layers four rule sets in order:
+
+1. **`@eslint/js` recommended** — standard JavaScript best practices
+2. **`typescript-eslint` recommended** — TypeScript-specific rules (no unused vars, explicit types where needed, etc.)
+3. **`eslint-config-next/core-web-vitals`** — Next.js rules including Core Web Vitals checks (e.g. no `<img>` without `<Image />`, correct `<Script>` usage)
+4. **`eslint-plugin-simple-import-sort`** — enforces alphabetically sorted import blocks, keeping the import list predictable and diff-friendly
+
+### Prettier
+
+```bash
+npm run format        # check formatting without making changes (useful in CI)
+npm run format:write  # reformat all files in place
+```
+
+`.prettierrc` settings of note:
+
+- `printWidth: 120` — longer lines than the Prettier default (80) to suit modern wide screens
+- `singleQuote: true` — single quotes for strings
+- `proseWrap: always` — wraps Markdown prose at `printWidth`, keeping the README readable in any editor
+- `plugins: ["prettier-plugin-tailwindcss"]` — automatically sorts Tailwind utility classes in `className` props into the [recommended order](https://tailwindcss.com/blog/automatic-class-sorting-with-prettier); no manual ordering needed
+
+### Running both together
+
+```bash
+npm run lint:fix && npm run format:write
+```
 
 ---
 

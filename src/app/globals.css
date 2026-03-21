@@ -20,7 +20,14 @@
 
 @plugin 'flowbite/plugin';
 
-@source '../node_modules/flowbite';
+/*
+  Point Tailwind's scanner directly at the built Flowbite bundle so it finds
+  all class names Flowbite's JS applies dynamically at runtime (e.g. the
+  translate-x-*, opacity-*, and transition classes used during carousel
+  transitions). Without this, those classes get pruned from the CSS output
+  and carousel/modal animations silently break.
+*/
+@source '../node_modules/flowbite/dist/flowbite.js';
 
 /* Apply a consistent yellow focus ring to all footer links. */
 footer a:focus-visible {
