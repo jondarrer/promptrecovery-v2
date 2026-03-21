@@ -42,7 +42,7 @@ export function Toast({
         <Check className="h-5 w-5" aria-hidden="true" />
         <span className="sr-only">Check icon</span>
       </div>
-      <div className="ms-3 text-sm font-normal">{message}</div>
+      <div className="ms-3 text-sm font-semibold">{message}</div>
       <button
         type="button"
         onClick={onClose}

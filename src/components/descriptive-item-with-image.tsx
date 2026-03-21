@@ -22,8 +22,8 @@ export function DescriptiveItemWithImage({ item }: { item: ItemWithIconAndPictur
       <div className="group hover:bg-muted-hover focus:bg-muted-focus flex size-full justify-between gap-x-4 gap-y-6 rounded-lg p-5 focus:outline-hidden">
         <Icon className="size-8 shrink-0" />
         <div className="flex flex-col">
-          <h3 className="text-foreground block font-normal">{item.name}</h3>
-          <p className="text-muted-foreground-2 font-thin">{item.description}</p>
+          <h3 className="text-foreground block font-semibold">{item.name}</h3>
+          <p className="text-muted-foreground-2">{item.description}</p>
           <Image
             className="rounded-base mt-2 max-w-full grow-2"
             width={item.picture.width}

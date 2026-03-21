@@ -37,10 +37,10 @@ export default function HomePage() {
             <div>
               {/*-- Title --*/}
               <div className="mt-4 md:mb-12">
-                <h1 className="text-foreground mb-4 text-4xl font-semibold lg:text-5xl">
+                <h1 className="text-foreground mb-4 text-4xl font-bold lg:text-5xl">
                   Roadside recovery you can rely on
                 </h1>
-                <h2 className="text-foreground mb-4 text-2xl font-normal lg:text-3xl">
+                <h2 className="text-foreground mb-4 text-2xl font-semibold lg:text-3xl">
                   Serving Watford and the surrounding areas
                 </h2>
                 <p className="text-muted-foreground-2 mb-4 text-xl font-light">
@@ -85,7 +85,7 @@ export default function HomePage() {
               <p className="mt-8">
                 <Link
                   href="/about"
-                  className="xs:inline text-navy underline-navy hidden text-xl leading-5 font-normal underline-offset-4 hover:underline"
+                  className="text-navy underline-navy inline text-xl leading-5 font-semibold underline-offset-4 hover:underline"
                 >
                   Learn more about us
                 </Link>
@@ -138,7 +138,7 @@ export default function HomePage() {
       <Section>
         <div className="mx-auto max-w-7xl px-4 py-10 pt-18 sm:px-6 lg:px-8 lg:py-14 lg:pt-18">
           <SectionHeading sectionName="Find us" />
-          <h3 className="mb-8 text-center text-xl font-thin">We operate throughout Watford and surrounding areas.</h3>
+          <h3 className="mb-8 text-center text-xl">We operate throughout Watford and surrounding areas.</h3>
           <GoogleMap />
         </div>
       </Section>

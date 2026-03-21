@@ -16,10 +16,10 @@ export function FaqItem({ faq }: { faq: Faq }) {
         <CircleHelp className="text-muted-foreground-1 mt-1 size-6 shrink-0" aria-hidden="true" />
 
         <div className="grow">
-          <h3 className="text-foreground decoration-yellow font-normal underline decoration-3 underline-offset-8 md:text-lg">
+          <h3 className="text-foreground decoration-yellow font-semibold underline decoration-3 underline-offset-8 md:text-lg">
             {faq.question}
           </h3>
-          <p className="text-navy mt-4 font-thin">{faq.answer}</p>
+          <p className="text-navy mt-4">{faq.answer}</p>
         </div>
       </div>
     </div>

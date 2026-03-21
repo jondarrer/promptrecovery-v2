@@ -20,8 +20,8 @@ export function ServiceItem({ service }: { service: ItemWithIcon }) {
         <Icon className="size-8 shrink-0" />
         <div>
           <div>
-            <h3 className="text-foreground block font-normal">{service.name}</h3>
-            <p className="text-muted-foreground-2 font-thin">{service.description}</p>
+            <h3 className="text-foreground block font-semibold">{service.name}</h3>
+            <p className="text-muted-foreground-2">{service.description}</p>
           </div>
         </div>
       </div>

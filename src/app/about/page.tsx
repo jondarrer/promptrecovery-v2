@@ -11,7 +11,7 @@ import { pictures, seo, values } from '../data/index';
 
 export const metadata: Metadata = {
   title: 'About',
-  alternates: { canonical: `${seo.url}/about` },
+  alternates: { canonical: `${seo.url}/about/` },
   description:
     'Meet Nick — founder of Prompt Recovery Ltd, with 20+ years of professional driving experience. Trusted, local roadside recovery in Watford and nearby areas.',
   openGraph: {
