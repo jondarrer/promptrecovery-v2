@@ -37,16 +37,16 @@ export default function HomePage() {
             <div>
               {/*-- Title --*/}
               <div className="mt-4 md:mb-12">
-                <h1 className="text-foreground mb-4 text-4xl font-bold lg:text-5xl">
+                <h1 className="text-foreground mb-4 text-center text-4xl font-bold md:text-left lg:text-5xl">
                   Roadside recovery you can rely on
                 </h1>
-                <h2 className="text-foreground mb-4 text-2xl font-semibold lg:text-3xl">
+                <h2 className="text-foreground mb-4 text-center text-2xl font-semibold md:text-left lg:text-3xl">
                   Serving Watford and the surrounding areas
                 </h2>
-                <p className="text-muted-foreground-2 mb-4 text-xl font-light">
+                <p className="text-muted-foreground-2 mb-4 text-center text-xl font-light md:text-left">
                   Fast, friendly and affordable help for vehicles under 4 tonnes
                 </p>
-                <p className="pt-4">
+                <p className="pt-4 text-center md:text-left">
                   <Link
                     href={`tel:${seo.phone}`}
                     className="bg-brand hover:bg-brand-light focus:ring-yellow rounded-base text-md box-border inline border border-transparent px-3 py-3 leading-5 font-normal text-white shadow-xs focus:ring-2 focus:outline-none"

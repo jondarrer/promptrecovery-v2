@@ -122,12 +122,12 @@ export default function Footer({
         </div>
         <hr className="border-default my-6 sm:mx-auto lg:my-8" />
         <div className="sm:flex sm:items-center sm:justify-between">
-          <span className="text-sm text-white sm:text-center">
+          <span className="inline-block text-sm text-white sm:text-center">
             © 2026{' '}
             <Link href="https://promptrecovery.co.uk/" className="hover:underline">
               Prompt Recovery
             </Link>
-            . All Rights Reserved.
+            . All Rights Reserved.&nbsp;
           </span>
           <span className="inline-block text-sm text-white sm:text-center">
             Registered company{' '}
