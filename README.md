@@ -549,13 +549,18 @@ import { Inter } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'] });
 ```
 
-`next/font/google` **self-hosts** the font files at build time — it downloads them from Google Fonts during `next build` and bundles them as static assets. At runtime, the browser loads the font from your own domain (or GitHub Pages), never from `fonts.googleapis.com`. This means:
+`next/font/google` **self-hosts** the font files at build time — it downloads them from Google Fonts during `next build`
+and bundles them as static assets. At runtime, the browser loads the font from your own domain (or GitHub Pages), never
+from `fonts.googleapis.com`. This means:
 
 - No external DNS lookup or network round-trip for the font at page load
 - No Google Fonts cookie or request visible to the user — GDPR-friendly by default
-- No `<link rel="preconnect">` or `<link rel="stylesheet">` in `<head>` is needed; Next.js injects an optimised `<style>` block instead
+- No `<link rel="preconnect">` or `<link rel="stylesheet">` in `<head>` is needed; Next.js injects an optimised
+  `<style>` block instead
 
-To change the font, swap the import and constructor call in `layout.tsx`. The [Next.js font docs](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) list all available Google Fonts and configuration options (weights, styles, variable fonts, CSS variable mode).
+To change the font, swap the import and constructor call in `layout.tsx`. The
+[Next.js font docs](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) list all available Google
+Fonts and configuration options (weights, styles, variable fonts, CSS variable mode).
 
 ### `public/.nojekyll`
 
@@ -568,10 +573,10 @@ it, files and folders starting with `_` (which Next.js uses internally) would be
 
 Two separate tools handle code quality:
 
-| Tool | Config file | Responsibility |
-| --- | --- | --- |
-| [ESLint](https://eslint.org/) | `eslint.config.mjs` | Code correctness, style rules, import order |
-| [Prettier](https://prettier.io/) | `.prettierrc` | Consistent code formatting, Tailwind class sorting |
+| Tool                             | Config file         | Responsibility                                     |
+| -------------------------------- | ------------------- | -------------------------------------------------- |
+| [ESLint](https://eslint.org/)    | `eslint.config.mjs` | Code correctness, style rules, import order        |
+| [Prettier](https://prettier.io/) | `.prettierrc`       | Consistent code formatting, Tailwind class sorting |
 
 ### ESLint
 
@@ -584,8 +589,10 @@ The flat config (`eslint.config.mjs`) layers four rule sets in order:
 
 1. **`@eslint/js` recommended** — standard JavaScript best practices
 2. **`typescript-eslint` recommended** — TypeScript-specific rules (no unused vars, explicit types where needed, etc.)
-3. **`eslint-config-next/core-web-vitals`** — Next.js rules including Core Web Vitals checks (e.g. no `<img>` without `<Image />`, correct `<Script>` usage)
-4. **`eslint-plugin-simple-import-sort`** — enforces alphabetically sorted import blocks, keeping the import list predictable and diff-friendly
+3. **`eslint-config-next/core-web-vitals`** — Next.js rules including Core Web Vitals checks (e.g. no `<img>` without
+   `<Image />`, correct `<Script>` usage)
+4. **`eslint-plugin-simple-import-sort`** — enforces alphabetically sorted import blocks, keeping the import list
+   predictable and diff-friendly
 
 ### Prettier
 
@@ -599,7 +606,8 @@ npm run format:write  # reformat all files in place
 - `printWidth: 120` — longer lines than the Prettier default (80) to suit modern wide screens
 - `singleQuote: true` — single quotes for strings
 - `proseWrap: always` — wraps Markdown prose at `printWidth`, keeping the README readable in any editor
-- `plugins: ["prettier-plugin-tailwindcss"]` — automatically sorts Tailwind utility classes in `className` props into the [recommended order](https://tailwindcss.com/blog/automatic-class-sorting-with-prettier); no manual ordering needed
+- `plugins: ["prettier-plugin-tailwindcss"]` — automatically sorts Tailwind utility classes in `className` props into
+  the [recommended order](https://tailwindcss.com/blog/automatic-class-sorting-with-prettier); no manual ordering needed
 
 ### Running both together
 

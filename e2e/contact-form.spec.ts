@@ -1,4 +1,4 @@
-import { expect, type Locator, type Page,test } from '@playwright/test';
+import { expect, type Locator, type Page, test } from '@playwright/test';
 
 const WEB3FORMS_URL = 'https://api.web3forms.com/submit';
 
