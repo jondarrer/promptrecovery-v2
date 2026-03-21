@@ -35,7 +35,7 @@
   @source inline() is Tailwind v4's built-in safelist mechanism — it
   generates the listed utilities unconditionally, independent of scanning.
 */
-@source inline("translate-x-0 -translate-x-full translate-x-full z-10 z-20 z-30");
+@source inline('translate-x-0 -translate-x-full translate-x-full z-10 z-20 z-30');
 
 /* Apply a consistent yellow focus ring to all footer links. */
 footer a:focus-visible {
