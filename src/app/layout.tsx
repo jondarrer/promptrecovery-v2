@@ -25,6 +25,7 @@ export const metadata: Metadata = {
     default: seo.businessName,
   },
   description: seo.description,
+  keywords: ['recovery service', 'roadside assistance', 'Watford', 'vehicle recovery', 'prompt recovery'],
   icons: { icon: '/images/logo-128x128.png' },
   openGraph: {
     type: 'website',

@@ -70,6 +70,18 @@ required:
 | `GOOGLE_TAG_MANAGER_ID` | GTM container ID (format: `GTM-XXXXXXX`)                   | [tagmanager.google.com](https://tagmanager.google.com/) |
 | `GOOGLE_ANALYTICS_ID`   | GA4 measurement ID (format: `G-XXXXXXXXXX`)                | [analytics.google.com](https://analytics.google.com/)   |
 
+### Optional variables
+
+| Variable         | Description                                                              | When to set                                              |
+| ---------------- | ------------------------------------------------------------------------ | -------------------------------------------------------- |
+| `APP_INDEX_MODE` | Set to `NOINDEX` to make `robots.txt` block all crawlers (`Disallow: /`) | Staging / preview environments only — omit in production |
+
+When `APP_INDEX_MODE=NOINDEX`, `robots.ts` returns `Disallow: /` for all user agents, preventing the environment from
+appearing in search results. Leave the variable unset (or absent) in production.
+
+The `.env.example` file includes this variable set to `NOINDEX` as a safe default, so local development is never
+accidentally indexed. Remove or unset it if you need to test production crawler behaviour locally.
+
 ### Script-only variables (local use, not needed in CI)
 
 | Variable              | Description                                                                                 | Where to get it                                                                                    |

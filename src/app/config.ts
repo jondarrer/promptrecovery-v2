@@ -18,6 +18,7 @@ function getConfig() {
       gtmId: process.env.GOOGLE_TAG_MANAGER_ID || '',
       gaId: process.env.GOOGLE_ANALYTICS_ID || '',
     },
+    isNoindex: process.env.APP_INDEX_MODE === 'NOINDEX',
   };
 }
 

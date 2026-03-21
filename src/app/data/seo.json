@@ -21,6 +21,7 @@
   "areaServed": "Watford, Bushey, Rickmansworth, Croxley Green, and surrounding areas",
   "ogImage": {
     "url": "/images/image2-1185x593.jpg",
+    "type": "image/jpeg",
     "width": 1185,
     "height": 593,
     "alt": "Prompt Recovery — roadside recovery and towing truck in Watford"

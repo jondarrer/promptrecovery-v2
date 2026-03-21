@@ -18,6 +18,7 @@ import { googleReviews, reasonsToChooseNick, seo, services } from './data/index'
 // This page's browser tab will read: "Home | Prompt Recovery"
 export const metadata: Metadata = {
   title: 'Home',
+  alternates: { canonical: `${seo.url}/` },
   openGraph: {
     url: seo.url,
   },

@@ -7,6 +7,7 @@ import { pictures, seo, services } from '../data/index';
 
 export const metadata: Metadata = {
   title: 'Services',
+  alternates: { canonical: `${seo.url}/services` },
   description:
     'Breakdown towing, motorway recovery, van recovery, stuck vehicle recovery, and more. Safe, fast, and affordable — serving Watford and surrounding areas.',
   openGraph: {

@@ -71,6 +71,7 @@ jobs:
           FORM_ACCESS_KEY: ${{ secrets.FORM_ACCESS_KEY }}
           GOOGLE_TAG_MANAGER_ID: ${{ secrets.GOOGLE_TAG_MANAGER_ID }}
           GOOGLE_ANALYTICS_ID: ${{ secrets.GOOGLE_ANALYTICS_ID }}
+          APP_INDEX_MODE: ${{ secrets.APP_INDEX_MODE }}
 
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium

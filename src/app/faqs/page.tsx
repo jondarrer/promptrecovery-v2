@@ -7,6 +7,7 @@ import { faqs, seo } from '../data/index';
 
 export const metadata: Metadata = {
   title: 'FAQs',
+  alternates: { canonical: `${seo.url}/faqs` },
   description:
     'Got a question before booking? Find answers to the most common questions about our vehicle recovery services in Watford and surrounding areas.',
   openGraph: {
