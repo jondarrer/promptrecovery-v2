@@ -17,7 +17,10 @@ const config = [
     },
   },
   {
-    ignores: ['.next/**', 'out/**', 'node_modules/**'],
+    // public/ contains static assets (images, CNAME, vendor JS) that should
+    // never be linted. scripts/ are plain Node.js ESM files that don't go
+    // through the Next.js/TypeScript build pipeline.
+    ignores: ['.next/**', 'out/**', 'node_modules/**', 'public/**', 'scripts/**'],
   },
 ];
 
