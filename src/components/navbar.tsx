@@ -20,6 +20,7 @@ const pages: Record<string, string> = {
   About: '/about',
   Services: '/services',
   FAQs: '/faqs',
+  Blog: '/blog',
 };
 
 /**
@@ -91,12 +92,14 @@ export default function Navbar({ children, phoneNumber }: { children?: React.Rea
     return (
       <li key={pageName}>
         {isActive ? (
-          <span
-            className="text-yellow bg-brand block rounded-sm px-3 py-2 text-xl font-normal md:bg-transparent md:p-0"
+          <Link
+            href={pageRoute}
+            className="text-yellow bg-brand block rounded-sm px-3 py-2 text-xl font-normal hover:underline hover:decoration-2 hover:underline-offset-4 focus-visible:ring-2 md:border-0 md:bg-transparent md:p-0 md:hover:bg-transparent md:dark:hover:bg-transparent"
             aria-current="page"
+            onClick={() => closeMenu()}
           >
             {pageName}
-          </span>
+          </Link>
         ) : (
           <Link
             href={pageRoute}
@@ -135,7 +138,7 @@ export default function Navbar({ children, phoneNumber }: { children?: React.Rea
           </Link>
           <Link
             href={`https://wa.me/${phoneNumber}`}
-            className="xs:inline focus:ring-yellow rounded-base ml-4 box-border hidden border border-transparent bg-transparent px-2 py-0 text-xl leading-5 font-normal text-white shadow-xs focus:ring-2 focus:outline-none"
+            className="xs:inline focus:ring-yellow rounded-base ml-0 box-border hidden border border-transparent bg-transparent px-2 py-0 text-xl leading-5 font-normal text-white shadow-xs focus:ring-2 focus:outline-none lg:ml-4"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -189,7 +192,7 @@ export default function Navbar({ children, phoneNumber }: { children?: React.Rea
           </button>
         </div>
         <div className="hidden w-full items-center justify-between md:order-1 md:flex md:w-auto" id="navbar-sticky">
-          <ul className="border-default rounded-base mt-4 flex flex-col border px-4 py-4 font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0 md:p-0 rtl:space-x-reverse">
+          <ul className="border-default rounded-base mt-4 flex flex-col border px-4 py-4 font-medium md:mt-0 md:flex-row md:space-x-3 md:border-0 md:p-0 lg:space-x-8 rtl:space-x-reverse">
             {menuItemLinks}
           </ul>
         </div>

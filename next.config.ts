@@ -25,4 +25,7 @@ const nextConfig: NextConfig = {
   basePath: process.env.NEXT_PUBLIC_BASE_PATH ?? '',
 };
 
-export default nextConfig;
+// Integrate MDX rendering into TypeScript/Next.js
+import createMDX from '@next/mdx';
+const withMDX = createMDX({});
+export default withMDX(nextConfig);

@@ -26,13 +26,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${seo.url}/services/`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
-      priority: 0.7,
+      priority: 0.8,
     },
     {
       url: `${seo.url}/faqs/`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
-      priority: 0.5,
+      priority: 0.8,
+    },
+    {
+      url: `${seo.url}/blog/`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
     },
   ];
 }

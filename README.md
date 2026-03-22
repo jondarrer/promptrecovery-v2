@@ -18,6 +18,7 @@ interactions are powered by Flowbite; icons come from Lucide React; quote reques
 | [Lucide React](https://lucide.dev/)                                             | 0.577    | Icon library                                      |
 | [Web3Forms](https://web3forms.com/)                                             | —        | Static-site-compatible contact form submissions   |
 | [@next/third-parties](https://nextjs.org/docs/app/guides/third-party-libraries) | 15       | Google Analytics & GTM integration                |
+| [next-mdx-remote](https://github.com/hashicorp/next-mdx-remote)                 | 5        | RSC-compatible MDX rendering for blog posts       |
 | Node.js `node:test`                                                             | built-in | Unit testing                                      |
 | [tsx](https://tsx.is/)                                                          | 4        | TypeScript loader for tests                       |
 
@@ -241,6 +242,10 @@ node --import tsx --test --test-reporter=spec 'src/**/*.test.ts'
 │   ├── app/
 │   │   ├── about/
 │   │   │   └── page.tsx            # /about page
+│   │   ├── blog/
+│   │   │   ├── [slug]/
+│   │   │   │   └── page.tsx        # /blog/<slug> — renders an MDX post via next-mdx-remote
+│   │   │   └── page.tsx            # /blog — lists all posts
 │   │   ├── data/
 │   │   │   ├── index.ts            # Barrel re-export for all data files
 │   │   │   ├── faqs.json           # FAQ questions and answers
@@ -275,9 +280,16 @@ node --import tsx --test --test-reporter=spec 'src/**/*.test.ts'
 │   │   ├── service-item.tsx        # Service/value card
 │   │   ├── toast.tsx               # Success/error notification
 │   │   └── yes-no-radio-group.tsx  # Yes/No radio pair for contact form
+│   ├── content/
+│   │   └── posts/
+│   │       └── *.mdx               # Blog posts (one file per post)
+│   ├── lib/
+│   │   ├── pictures.ts             # Helper to resolve a picture by index and size
+│   │   └── posts.ts                # Blog post helpers: list slugs, read meta, read content
 │   └── types.ts                    # Shared TypeScript types
 ├── .gitignore
 ├── .nvmrc                          # Pins the Node.js version for nvm users (run: nvm use)
+├── mdx-components.tsx              # MDX element styles (headings, lists, links, etc.)
 ├── next.config.ts                  # Static export, image, and routing config
 ├── package.json
 ├── postcss.config.mjs              # PostCSS pipeline (@tailwindcss/postcss)
@@ -409,6 +421,74 @@ The single source of truth for business information used across metadata and str
 - **`FAQPage` JSON-LD** in `faqs/page.tsx` — built from `faqs.json` at build time.
 
 To update business details (address, phone, hours, social links), edit `seo.json` — no code changes are needed.
+
+---
+
+## Blog
+
+Blog posts are written in MDX (Markdown with optional React components) and live in `src/content/posts/`. Each file
+becomes a statically rendered page at `/blog/<slug>/`. There is no CMS or external service — posts are committed to the
+repository and built at deploy time alongside the rest of the site.
+
+### Writing a post
+
+Create a new `.mdx` file in `src/content/posts/`. The filename becomes the URL slug:
+
+```text
+src/content/posts/my-new-post.mdx  →  /blog/my-new-post/
+```
+
+Every post must begin with YAML frontmatter:
+
+```mdx
+---
+title: 'My Post Title'
+date: '2026-06-01'
+description: 'One sentence shown on the listing page and used as the meta description.'
+imageIndex: 3
+---
+
+Your markdown content goes here...
+```
+
+| Field         | Required | Description                                                                                                                |
+| ------------- | -------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `title`       | Yes      | Displayed as the `<h1>` in the post header and used as the `<title>` tag.                                                  |
+| `date`        | Yes      | ISO 8601 date (`YYYY-MM-DD`). Used for display and to sort posts newest-first on the index.                                |
+| `description` | Yes      | Shown on the listing page below the title and used as the `<meta name="description">` value.                               |
+| `imageIndex`  | Yes      | 1-based index into `src/app/data/pictures.json`. Shown in the post header and used for Open Graph / Twitter Card previews. |
+
+### How it works
+
+```
+src/content/posts/<slug>.mdx
+         │
+         ├── gray-matter parses the frontmatter → PostMeta (title, date, description, imageIndex)
+         │
+         └── next-mdx-remote/rsc compiles the markdown body → React Server Component
+                   │
+                   └── mdxComponents (mdx-components.tsx) styles headings, lists, links, etc.
+```
+
+- **`src/lib/posts.ts`** — Three helpers used at build time:
+  - `getPostSlugs()` — reads `src/content/posts/` and returns all `.mdx` filenames (without extension).
+  - `getPostMeta(slug)` — reads a single file and returns its frontmatter as `PostMeta`.
+  - `getPostContent(slug)` — returns both the frontmatter and the raw markdown body (frontmatter stripped).
+  - `getAllPostsMeta()` — returns all posts sorted newest-first; used by the listing page.
+- **`generateStaticParams`** in `src/app/blog/[slug]/page.tsx` — calls `getPostSlugs()` so Next.js knows which pages to
+  pre-render at build time. No posts are rendered at runtime.
+- **`mdx-components.tsx`** (project root) — defines the styled React elements that replace bare HTML tags inside MDX
+  (e.g. `<h2>` gets Tailwind heading classes). Also satisfies the `@next/mdx` app-router requirement. The same
+  `mdxComponents` object is imported directly by the post page and passed to `<MDXRemote components={...} />`.
+
+### Deploying a new post
+
+Because the site is a static export, a new post requires a build:
+
+1. Add the `.mdx` file to `src/content/posts/`.
+2. Push to `main` — the GitHub Actions workflow rebuilds and redeploys automatically.
+
+No other code changes are needed.
 
 ---
 

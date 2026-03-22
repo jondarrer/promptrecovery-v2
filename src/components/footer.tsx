@@ -37,8 +37,8 @@ export default function Footer({
     <footer className="bg-navy">
       <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div className="md:flex md:justify-between">
-          <div className="mb-6 md:mb-0">
-            <Link href="/" className="flex items-center">
+          <div className="mr-4 mb-6 md:mb-0">
+            <Link href="/" className="flex items-center md:flex-col lg:flex-row">
               <Image
                 src={`${basePath}/images/logo-128x128.png`}
                 width={128}
@@ -63,9 +63,14 @@ export default function Footer({
                     Services
                   </Link>
                 </li>
-                <li>
+                <li className="mb-4">
                   <Link href="/faqs" className="hover:underline">
                     FAQs
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/blog" className="hover:underline">
+                    Blog
                   </Link>
                 </li>
               </ul>

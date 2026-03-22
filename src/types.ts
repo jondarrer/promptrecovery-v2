@@ -94,6 +94,18 @@ export type ItemWithIconAndPicture = {
 export type Picture = {
   filePath: string;
   filePath1: string;
+  filePath2: string;
+  description: string;
+  width: number;
+  height: number;
+  width1: number;
+  height1: number;
+  width2: number;
+  height2: number;
+};
+
+export type PictureImage = {
+  url: string;
   description: string;
   width: number;
   height: number;

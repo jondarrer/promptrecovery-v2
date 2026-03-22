@@ -7,3 +7,6 @@ public/
 
 # Node.js scripts — plain ESM, not part of the Next.js/TypeScript pipeline
 scripts/
+
+# MDX files - frontmatter is always formatted in an incompabitle way
+src/content/posts
