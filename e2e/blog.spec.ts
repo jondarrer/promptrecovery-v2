@@ -72,9 +72,7 @@ test.describe('Blog post page', () => {
   });
 
   test('renders the post description in the header', async ({ page }) => {
-    await expect(
-      page.getByText(/Here's a step-by-step guide to staying safe and getting back on the road/)
-    ).toBeVisible();
+    await expect(page.getByText(/Here's a step-by-step guide to staying safe and getting help fast/)).toBeVisible();
   });
 
   test('renders the post body content', async ({ page }) => {

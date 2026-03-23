@@ -11,6 +11,8 @@ export interface PostMeta {
   description: string;
   imageIndex: number;
   author: string;
+  /** Optional ordered step names — used to generate HowTo structured data. */
+  steps?: string[];
 }
 
 export function getPostSlugs(): string[] {
@@ -32,6 +34,7 @@ export function getPostMeta(slug: string): PostMeta {
     description: data.description as string,
     imageIndex: data.imageIndex as number,
     author: (data.author as string) ?? 'Nick',
+    steps: Array.isArray(data.steps) ? (data.steps as string[]) : undefined,
   };
 }
 
@@ -49,6 +52,7 @@ export function getPostContent(slug: string): { meta: PostMeta; content: string 
       description: data.description as string,
       imageIndex: data.imageIndex as number,
       author: (data.author as string) ?? 'Nick',
+      steps: Array.isArray(data.steps) ? (data.steps as string[]) : undefined,
     },
   };
 }

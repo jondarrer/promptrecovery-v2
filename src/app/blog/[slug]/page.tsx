@@ -5,10 +5,11 @@ import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 
 import { getPictureAsImage } from '@/lib/pictures';
-import { getPostContent, getPostSlugs } from '@/lib/posts';
+import { getAllPostsMeta, getPostContent, getPostSlugs } from '@/lib/posts';
 
 import { mdxComponents } from '../../../../mdx-components';
 import { seo } from '../../data/index';
+import picturesData from '../../data/pictures.json';
 import { baseOpenGraph } from '../../layout';
 
 type Props = { params: Promise<{ slug: string }> };
@@ -43,11 +44,16 @@ export default async function BlogPostPage({ params }: Props) {
 
   const { meta, content } = getPostContent(slug);
   const image450 = getPictureAsImage(meta.imageIndex, 1);
-  const image200 = getPictureAsImage(meta.imageIndex, 2);
 
   // Absolute image URL for structured data (always uses the canonical domain).
-  const schemaImageUrl = `${seo.url}${image200.url}`;
+  const schemaImageUrl = `${seo.url}${picturesData[meta.imageIndex - 1].filePath1}`;
   const canonicalUrl = `${seo.url}/blog/${slug}/`;
+
+  // Reading time: ~200 words per minute.
+  const wordCount = content.split(/\s+/).filter(Boolean).length;
+  const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+
+  const relatedPosts = getAllPostsMeta().filter((p) => p.slug !== slug);
 
   const blogPostingSchema = {
     '@context': 'https://schema.org',
@@ -57,19 +63,9 @@ export default async function BlogPostPage({ params }: Props) {
     datePublished: meta.date,
     dateModified: meta.date,
     image: schemaImageUrl,
-    author: {
-      '@type': 'Person',
-      name: meta.author,
-    },
-    publisher: {
-      '@type': 'LocalBusiness',
-      name: seo.businessName,
-      url: seo.url,
-    },
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': canonicalUrl,
-    },
+    author: { '@type': 'Person', name: meta.author },
+    publisher: { '@type': 'LocalBusiness', name: seo.businessName, url: seo.url },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
   };
 
   const breadcrumbSchema = {
@@ -82,10 +78,23 @@ export default async function BlogPostPage({ params }: Props) {
     ],
   };
 
+  const howToSchema = meta.steps
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'HowTo',
+        name: meta.title,
+        description: meta.description,
+        step: meta.steps.map((name, i) => ({ '@type': 'HowToStep', position: i + 1, name })),
+      }
+    : null;
+
   return (
     <div className="mx-auto max-w-340 px-4 py-10 pt-42 sm:px-6 lg:px-8 lg:py-14 lg:pt-42">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      {howToSchema && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
+      )}
 
       <div className="mx-auto max-w-2xl">
         {/* Breadcrumb nav */}
@@ -111,7 +120,8 @@ export default async function BlogPostPage({ params }: Props) {
               By {meta.author} &middot;{' '}
               <time dateTime={meta.date}>
                 {new Date(meta.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
-              </time>
+              </time>{' '}
+              &middot; {readingTime} min read
             </p>
             <Image
               className="rounded-base mt-4 h-auto w-full"
@@ -124,6 +134,30 @@ export default async function BlogPostPage({ params }: Props) {
 
           <MDXRemote source={content} components={mdxComponents} />
         </article>
+
+        {relatedPosts.length > 0 && (
+          <aside className="mt-12 border-t border-gray-200 pt-8">
+            <h2 className="text-heading mb-6 text-xl font-semibold">More from the blog</h2>
+            <ul className="space-y-4">
+              {relatedPosts.map((post) => (
+                <li key={post.slug}>
+                  <Link href={`/blog/${post.slug}/`} className="text-brand hover:text-brand-light font-medium">
+                    {post.title}
+                  </Link>
+                  <p className="mt-1 text-sm text-gray-500">
+                    <time dateTime={post.date}>
+                      {new Date(post.date).toLocaleDateString('en-GB', {
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric',
+                      })}
+                    </time>
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </aside>
+        )}
       </div>
     </div>
   );
