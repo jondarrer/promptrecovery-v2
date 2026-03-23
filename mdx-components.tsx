@@ -1,5 +1,7 @@
 import type { MDXComponents } from 'mdx/types';
 
+import { basePath } from './src/app/base-path';
+
 /**
  * Shared MDX element styles. Exported so next-mdx-remote can consume them
  * directly (via the `components` prop on <MDXRemote>), and also used by the
@@ -14,11 +16,18 @@ export const mdxComponents: MDXComponents = {
   ol: ({ children }) => <ol className="mb-4 list-decimal space-y-1 pl-6 text-gray-700">{children}</ol>,
   li: ({ children }) => <li className="leading-relaxed">{children}</li>,
   strong: ({ children }) => <strong className="font-semibold text-gray-900">{children}</strong>,
-  a: ({ href, children }) => (
-    <a href={href} className="text-brand hover:text-brand-light underline">
-      {children}
-    </a>
-  ),
+  a: ({ href, children }) => {
+    const isExternal = href?.startsWith('http://') || href?.startsWith('https://');
+    return (
+      <a
+        href={isExternal ? `${basePath}${href}` : href}
+        className="text-brand hover:text-brand-light underline"
+        {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+      >
+        {children}
+      </a>
+    );
+  },
   blockquote: ({ children }) => (
     <blockquote className="border-brand my-4 border-l-4 pl-4 text-gray-600 italic">{children}</blockquote>
   ),

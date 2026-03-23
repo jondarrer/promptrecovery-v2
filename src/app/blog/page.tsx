@@ -32,29 +32,22 @@ export default function BlogPage() {
           const image = getPictureAsImage(post.imageIndex, 2);
           return (
             <li key={post.slug} className="py-8">
-              <time className="text-sm text-gray-500">
-                {new Date(post.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
-              </time>
-              <h2 className="text-heading mt-2 text-xl font-semibold">
-                <Link href={`/blog/${post.slug}/`} className="hover:text-brand">
-                  {post.title}
-                </Link>
-              </h2>
-              {image && (
-                <Image
-                  className="rounded-base my-3 h-auto w-full"
-                  width={image.width}
-                  height={image.height}
-                  src={image.url}
-                  alt={image.description}
-                />
-              )}
-              <p className="mt-2 text-gray-600">{post.description}</p>
-              <Link
-                href={`/blog/${post.slug}/`}
-                className="text-brand hover:text-brand-light mt-3 inline-block text-sm font-medium"
-              >
-                Read more →
+              <Link href={`/blog/${post.slug}/`} className="hover:text-brand">
+                <time className="text-sm text-gray-500">
+                  {new Date(post.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+                </time>
+                <h2 className="mt-2 text-xl font-semibold">{post.title}</h2>
+                {image && (
+                  <Image
+                    className="rounded-base my-3 h-auto w-full"
+                    width={image.width}
+                    height={image.height}
+                    src={image.url}
+                    alt={image.description}
+                  />
+                )}
+                <p className="mt-2">{post.description}</p>
+                <p className="mt-3 inline-block text-sm font-medium">Read more →</p>
               </Link>
             </li>
           );
