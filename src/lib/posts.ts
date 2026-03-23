@@ -10,6 +10,7 @@ export interface PostMeta {
   date: string;
   description: string;
   imageIndex: number;
+  author: string;
 }
 
 export function getPostSlugs(): string[] {
@@ -30,6 +31,7 @@ export function getPostMeta(slug: string): PostMeta {
     date: data.date as string,
     description: data.description as string,
     imageIndex: data.imageIndex as number,
+    author: (data.author as string) ?? 'Nick',
   };
 }
 
@@ -46,6 +48,7 @@ export function getPostContent(slug: string): { meta: PostMeta; content: string 
       date: data.date as string,
       description: data.description as string,
       imageIndex: data.imageIndex as number,
+      author: (data.author as string) ?? 'Nick',
     },
   };
 }
