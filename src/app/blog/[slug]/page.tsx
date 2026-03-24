@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: meta.title,
     description: meta.description,
     alternates: { canonical: `${seo.url}/blog/${slug}/` },
-    openGraph: { ...baseOpenGraph, url: `${seo.url}/blog/${slug}/`, images: [image] },
+    openGraph: { ...baseOpenGraph, url: `${seo.url}/blog/${slug}/`, images: [image], type: 'article' },
     twitter: {
       card: 'summary_large_image',
       images: [image],
@@ -115,7 +115,7 @@ export default async function BlogPostPage({ params }: Props) {
         <article>
           <header className="mb-8 border-b border-gray-200 pb-8">
             <h1 className="text-heading text-3xl leading-tight font-bold md:text-4xl">{meta.title}</h1>
-            <p className="mt-3 text-lg text-gray-600">{meta.description}</p>
+            <h2 className="mt-3 text-lg text-gray-600">{meta.description}</h2>
             <p className="mt-3 text-sm text-gray-500">
               By {meta.author} &middot;{' '}
               <time dateTime={meta.date}>

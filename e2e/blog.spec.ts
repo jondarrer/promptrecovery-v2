@@ -15,7 +15,7 @@ test.describe('Blog listing page', () => {
   });
 
   test('renders the page heading', async ({ page }) => {
-    await expect(page.getByRole('heading', { name: 'Blog', level: 2 })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Blog', level: 1 })).toBeVisible();
   });
 
   test('shows at least one post entry', async ({ page }) => {

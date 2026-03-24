@@ -36,7 +36,7 @@ export default function BlogPage() {
                 <time className="text-sm text-gray-500">
                   {new Date(post.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
                 </time>
-                <h2 className="mt-2 text-xl font-semibold">{post.title}</h2>
+                <h3 className="mt-2 text-xl font-semibold">{post.title}</h3>
                 {image && (
                   <Image
                     className="rounded-base my-3 h-auto w-full"
