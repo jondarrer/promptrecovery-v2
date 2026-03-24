@@ -6,6 +6,18 @@
  * @param props.classNames - Additional Tailwind classes merged onto the `<section>` element.
  * @param props.children - Content to render inside the section.
  */
-export function Section({ classNames = '', children }: { classNames?: string; children: React.ReactNode }) {
-  return <section className={'px-8 py-5 ' + classNames}>{children}</section>;
+export function Section({
+  classNames = '',
+  id = undefined,
+  children,
+}: {
+  classNames?: string;
+  id?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <section id={id} className={'px-8 py-5 ' + classNames}>
+      {children}
+    </section>
+  );
 }

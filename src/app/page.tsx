@@ -73,7 +73,7 @@ export default function HomePage() {
       </div>
       {/*-- End Hero --*/}
       {/* About Section */}
-      <Section classNames="bg-light-yellow">
+      <Section id="about" classNames="bg-light-yellow">
         <div className="mx-auto max-w-7xl px-4 py-10 pt-18 sm:px-6 lg:px-8 lg:py-14 lg:pt-18">
           <div className="grid items-center gap-8 md:grid-cols-2 lg:gap-12">
             <div>
@@ -103,7 +103,7 @@ export default function HomePage() {
       </Section>
       {/* End About Section */}
       {/* Contact Form Section */}
-      <Section>
+      <Section id="request-a-quote">
         <div className="mx-auto max-w-7xl px-4 py-10 pt-18 sm:px-6 lg:px-8 lg:py-14 lg:pt-18">
           <SectionHeading sectionName="Request a quote" />
           <ContactForm action={config.form.action} accessKey={config.form.accessKey} />
@@ -111,7 +111,7 @@ export default function HomePage() {
       </Section>
       {/* End Contact Form Section */}
       {/* Services Section */}
-      <Section classNames="bg-light-grey">
+      <Section id="services" classNames="bg-light-grey">
         <div className="mx-auto max-w-7xl px-4 py-10 pt-18 sm:px-6 lg:px-8 lg:py-14 lg:pt-18">
           <SectionHeading sectionName="Services" />
           <div className="grid items-center gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -123,7 +123,7 @@ export default function HomePage() {
       </Section>
       {/* End Services Section */}
       {/* Why Choose Us Section */}
-      <Section classNames="bg-light-grey">
+      <Section id="choose-us" classNames="bg-light-grey">
         <div className="mx-auto max-w-7xl px-4 py-10 pt-18 sm:px-6 lg:px-8 lg:py-14 lg:pt-18">
           <SectionHeading sectionName="Why choose us" />
           <div className="grid items-center gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -135,7 +135,7 @@ export default function HomePage() {
       </Section>
       {/* End Why Choose Us Section */}
       {/* Find Us Section */}
-      <Section>
+      <Section id="find-us">
         <div className="mx-auto max-w-7xl px-4 py-10 pt-18 sm:px-6 lg:px-8 lg:py-14 lg:pt-18">
           <SectionHeading sectionName="Find us" />
           <h3 className="mb-8 text-center text-xl">We operate throughout Watford and surrounding areas.</h3>

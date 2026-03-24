@@ -47,7 +47,7 @@ export default function BlogPage() {
                   />
                 )}
                 <p className="mt-2">{post.description}</p>
-                <p className="mt-3 inline-block text-sm font-medium">Read more →</p>
+                <span className="mt-3 inline-block text-sm font-medium">Read more →</span>
               </Link>
             </li>
           );
