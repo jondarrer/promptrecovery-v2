@@ -9,7 +9,6 @@ import Footer from '@/components/footer';
 import Navbar from '@/components/navbar';
 import { Rating } from '@/components/rating';
 
-import { basePath } from './base-path';
 import config from './config';
 import { googleReviews, seo } from './data/index';
 
@@ -32,7 +31,7 @@ export const baseOpenGraph: Metadata['openGraph'] = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL(`${seo.url}${basePath}`),
+  metadataBase: new URL(seo.url),
   title: {
     // `template` wraps every page's title: "Page Name | Prompt Recovery"
     template: `%s | ${seo.businessName}`,
@@ -65,7 +64,7 @@ const localBusinessSchema = {
   name: seo.businessName,
   legalName: seo.legalName,
   description: seo.description,
-  url: `${seo.url}${basePath}`,
+  url: seo.url,
   telephone: seo.phone,
   address: {
     '@type': 'PostalAddress',

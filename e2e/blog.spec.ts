@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 // Known post — the one that ships with the project.
 const KNOWN_SLUG = 'what-to-do-when-your-car-breaks-down-on-the-motorway';
-const KNOWN_TITLE = 'What to Do When Your Car Breaks Down on the Motorway';
+const KNOWN_TITLE = 'What to do when your car breaks down on the motorway';
 const KNOWN_DATE = '21 March 2026'; // en-GB localeDateString
 
 // ---------------------------------------------------------------------------

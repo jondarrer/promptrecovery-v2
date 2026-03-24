@@ -48,7 +48,7 @@ describe('getPostMeta(slug)', () => {
 
   it('returns the correct title for the known post', () => {
     const meta = getPostMeta(KNOWN_SLUG);
-    assert.equal(meta.title, 'What to Do When Your Car Breaks Down on the Motorway');
+    assert.equal(meta.title, 'What to do when your car breaks down on the motorway');
   });
 
   it('returns a valid ISO date string', () => {
