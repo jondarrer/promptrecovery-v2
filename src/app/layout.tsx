@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   description: seo.description,
   keywords: ['recovery service', 'roadside assistance', 'Watford', 'vehicle recovery', 'prompt recovery'],
   formatDetection: { telephone: true },
-  icons: { icon: `/images/logo-128x128.png` },
+  icons: { icon: `${seo.url}/images/logo-128x128.png` },
   manifest: '/manifest.json',
   openGraph: baseOpenGraph,
   twitter: {
